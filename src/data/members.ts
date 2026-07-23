@@ -93,6 +93,7 @@ export const team: Member[] = [
     name: "S Sarvajana Hari",
     role: "Team Member",
     dept: "Y2, CCDS",
+    linkedin: "https://www.linkedin.com/in/hari-%E2%80%8E-%E2%80%8E-244b3724b/",
     photo: "/assets/team/member-11.webp",
   },
 ];
