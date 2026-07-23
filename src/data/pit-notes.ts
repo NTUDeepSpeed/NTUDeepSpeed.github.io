@@ -6,6 +6,8 @@ export interface PitNote {
   title: string;
   blurb: string;
   href: string;
+  /** Card thumbnail shown on the Pit notes index (16:9 crop). */
+  thumb: string;
   featured?: boolean;
 }
 
@@ -19,6 +21,7 @@ export const pitNotes: PitNote[] = [
     blurb:
       "6th of 78 in sim qualifying, top-10 on the physical track, and our complete autonomy pipeline's first race — five days at the 27th RoboRacer competition in Vienna.",
     href: "/pit-notes/racing-the-full-stack-at-icra-2026/",
+    thumb: "/assets/pit-notes/icra-2026/team-with-car.jpg",
     featured: true,
   },
 ];

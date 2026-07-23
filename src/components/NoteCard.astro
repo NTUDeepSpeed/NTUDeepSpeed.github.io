@@ -5,13 +5,16 @@ interface Props {
   note: PitNote;
   /** Pit notes index shows "May 12 · 2026"; Home preview shows just "May 12". */
   showYear?: boolean;
+  /** Pit notes index shows the card thumbnail; Home preview stays text-only. */
+  showThumb?: boolean;
 }
-const { note, showYear = false } = Astro.props;
+const { note, showYear = false, showThumb = false } = Astro.props;
 const date = showYear ? `${note.date} · ${note.year}` : note.date;
 ---
 
 <a href={note.href} style="text-decoration:none;color:inherit">
   <article class:list={["note-card", { featured: note.featured }]} style="height:100%">
+    {showThumb && <img class="thumb" src={note.thumb} alt="" loading="lazy" />}
     <div class="meta"><span class="tag">{note.tag}</span><span>{date}</span></div>
     <h3>{note.title}</h3>
     <p>{note.blurb}</p>

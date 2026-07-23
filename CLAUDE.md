@@ -67,7 +67,8 @@ src/
 - **Add a pit note** — create `src/pages/pit-notes/<slug>.astro` (copy an existing article page as
   a template) and prepend a matching card entry to `src/data/pit-notes.ts`. Article photos/videos
   go in `public/assets/pit-notes/<slug>/`, rendered with the `.article-figure` / `.article-media`
-  classes from `site.css`.
+  classes from `site.css`. Every card entry requires a `thumb` image (16:9 crop), shown on the
+  Pit notes index.
 - **Race-day "Live" chip** — toggle `showLiveChip` in `src/config.ts`.
 
 ### Design system

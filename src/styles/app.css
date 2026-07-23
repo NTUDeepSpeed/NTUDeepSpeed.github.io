@@ -445,6 +445,11 @@ body {
   transition: border-color var(--dur-fast) var(--ease-mech), transform var(--dur-fast) var(--ease-mech);
 }
 .note-card:hover { border-color: var(--fg); transform: translateY(-2px); }
+.note-card .thumb {
+  display: block; width: calc(100% + 40px); margin: -20px -20px 16px;
+  aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 8px 8px 0 0; border-bottom: 1px solid var(--line);
+}
 .note-card.featured { border-top: 2px solid var(--accent); }
 .note-card.featured .tag { color: var(--accent); }
 .note-card .meta {
