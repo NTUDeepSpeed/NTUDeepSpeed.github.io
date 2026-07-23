@@ -1,0 +1,33 @@
+---
+import type { Member } from "../data/members";
+
+interface Props {
+  member: Member;
+}
+const { member: m } = Astro.props;
+
+const words = m.name.split(/\s+/).filter(Boolean);
+const initials = (
+  (words[0]?.[0] ?? "") + (words.length > 1 ? (words[words.length - 1]?.[0] ?? "") : "")
+).toUpperCase();
+
+const cropStyle = m.crop
+  ? `--slot-s:${m.crop.s};--slot-x:${m.crop.x};--slot-y:${m.crop.y}`
+  : undefined;
+---
+
+<div class="member">
+  <div class="ph" style="padding:0">
+    {m.photo
+      ? <img src={m.photo} alt={m.name} loading="lazy" style={cropStyle} />
+      : <span class="initials">{initials}</span>}
+  </div>
+  <div class="meta">
+    <div class="name">{m.name}</div>
+    <div class="role">{m.role}</div>
+    <div class="dept">{m.dept}</div>
+    {m.linkedin && (
+      <a href={m.linkedin} target="_blank" rel="noopener" class="li-link">LinkedIn ↗</a>
+    )}
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{
+  "name": "ntu-deepspeed-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NTU DeepSpeed — autonomous racing team website",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.0.0",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import MemberCard from "../components/MemberCard.astro";
+import { team, alumni } from "../data/members";
+---
+
+<Base
+  active="members"
+  title="Members"
+  description="The students and mentors building, programming, and racing the NTU DeepSpeed car."
+>
+  <div class="hero-eyebrow" style="margin-bottom:8px">The roster</div>
+  <h1 class="hero-h" style="margin-bottom:8px">Members</h1>
+  <p class="hero-sub" style="margin-bottom:40px">
+    The students and mentors building, programming, and racing the car.
+  </p>
+  <div class="member-grid">
+    {team.map((member) => <MemberCard member={member} />)}
+  </div>
+
+  <section class="sec-plain" style="margin-top:56px;padding-bottom:0">
+    <div class="split-2" style="margin-bottom:32px">
+      <div>
+        <div class="sec-num">§ 02</div>
+        <h2 class="sec-h">Alumni</h2>
+      </div>
+      <p class="sec-lede">Mentors and members who've graduated on — from earlier seasons of the car.</p>
+    </div>
+    <div class="member-grid">
+      {alumni.map((member) => <MemberCard member={member} />)}
+    </div>
+  </section>
+</Base>

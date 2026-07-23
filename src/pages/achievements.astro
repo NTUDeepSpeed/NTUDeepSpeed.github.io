@@ -1,0 +1,66 @@
+---
+import Base from "../layouts/Base.astro";
+import { achievements, achievementStats, splitOrdinal } from "../data/achievements";
+---
+
+<Base
+  active="achievements"
+  title="Achievements"
+  description="Every race NTU DeepSpeed has run, from the first working car to the podium at ICRA."
+>
+  <div class="hero-eyebrow" style="margin-bottom:8px">Seasons 2022 → 2026</div>
+  <h1 class="hero-h" style="margin-bottom:8px">Achievements</h1>
+  <p class="hero-sub" style="margin-bottom:40px">
+    Every race we've run, from the first working car to the podium at ICRA.
+  </p>
+
+  <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:56px">
+    <div class="stat-panel hot">
+      <div class="k">Best ranking</div>
+      <div class="v">{achievementStats.bestRanking.value}</div>
+      <div class="foot">{achievementStats.bestRanking.foot}</div>
+    </div>
+    <div class="stat-panel">
+      <div class="k">Races</div>
+      <div class="v">{achievementStats.races.value}</div>
+      <div class="foot">{achievementStats.races.foot}</div>
+    </div>
+    <div class="stat-panel">
+      <div class="k">Cars built</div>
+      <div class="v">{achievementStats.carsBuilt.value}</div>
+      {achievementStats.carsBuilt.foot && <div class="foot">{achievementStats.carsBuilt.foot}</div>}
+    </div>
+  </div>
+
+  <div>
+    {achievements.map((e, i) => {
+      const ord = splitOrdinal(e.name);
+      const last = i === achievements.length - 1;
+      return (
+        <div class:list={["timeline-entry", { podium: e.podium, upcoming: e.upcoming, founded: e.founded }]}>
+          <div class="tl-date">{e.date}</div>
+          <div class="tl-rail">
+            {!last && <div class="line"></div>}
+            <div class="dot"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-head">
+              <h3>
+                {ord.num ? (
+                  <>
+                    {ord.num}<sup>{ord.suffix}</sup>{ord.rest}
+                  </>
+                ) : (
+                  e.name
+                )}
+              </h3>
+              {e.result && <span class="tl-result">{e.result}</span>}
+            </div>
+            <div class="tl-loc">{e.loc}</div>
+            {e.detail && <p class="tl-detail">{e.detail}</p>}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</Base>

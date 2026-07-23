@@ -1,0 +1,14 @@
+---
+import { SITE } from "../config";
+import { icons } from "./icons";
+---
+
+<footer class="ft">
+  <div>{SITE.tagline}</div>
+  <div class="ft-links">
+    <a href={SITE.links.github} target="_blank" rel="noopener"><Fragment set:html={icons.github()} />GitHub</a>
+    <a href={SITE.links.instagram} target="_blank" rel="noopener"><Fragment set:html={icons.instagram()} />Instagram</a>
+    <a href={SITE.links.linkedin} target="_blank" rel="noopener"><Fragment set:html={icons.linkedin()} />LinkedIn</a>
+    <a href={SITE.links.email}><Fragment set:html={icons.email()} />Email</a>
+  </div>
+</footer>

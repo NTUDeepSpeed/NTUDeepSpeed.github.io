@@ -1,0 +1,21 @@
+---
+import Base from "../../layouts/Base.astro";
+import NoteCard from "../../components/NoteCard.astro";
+import { pitNotes } from "../../data/pit-notes";
+---
+
+<Base
+  active="pit-notes"
+  title="Pit notes"
+  description="Race reports, engineering write-ups, and what the NTU DeepSpeed team learned soldering at 2am."
+>
+  <div class="hero-eyebrow" style="margin-bottom:8px">Engineering · Race reports · Team</div>
+  <h1 class="hero-h" style="margin-bottom:8px">Pit notes</h1>
+  <p class="hero-sub" style="margin-bottom:40px">
+    Race reports, engineering write-ups, and what we learned soldering at 2am. Written by the team,
+    for anyone building fast robots.
+  </p>
+  <div class="notes-grid">
+    {pitNotes.map((note) => <NoteCard note={note} showYear />)}
+  </div>
+</Base>

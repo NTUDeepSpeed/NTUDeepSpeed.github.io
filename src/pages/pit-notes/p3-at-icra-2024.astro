@@ -1,0 +1,61 @@
+---
+import Base from "../../layouts/Base.astro";
+import { icons } from "../../components/icons";
+---
+
+<Base
+  active="pit-notes"
+  title="P3 at ICRA 2024"
+  description="Three rookie drivers, one unfamiliar track, 41.8s laps in the final without a single bumper touch. What worked, what nearly didn't."
+>
+  <article class="article-wrap">
+    <a href="/pit-notes/" class="article-back">
+      <Fragment set:html={icons.arrowLeft()} />
+      All pit notes
+    </a>
+    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)">
+      Race report · May 12 · 2026
+    </div>
+    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px">P3 at ICRA 2024</h1>
+    <p class="hero-sub" style="margin-bottom:24px">
+      Three rookie drivers, one unfamiliar track, 41.8s laps in the final without a single bumper
+      touch. What worked, what nearly didn't.
+    </p>
+    <div class="article-byline">
+      <span>By the perception crew</span>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+    <div class="article-photo-slot">Race photo — to be provided</div>
+    <div class="article-body">
+      <p>
+        [Article body — content to be provided. This is a sample layout showing type, spacing, and
+        inline elements.]
+      </p>
+      <p>
+        We arrived in Yokohama with a car we'd only driven on our own track. The first practice
+        session made the problem obvious: the Vegas layout rewards late braking into T3, and our
+        lookahead was tuned for wide entries.
+      </p>
+      <h2>The final</h2>
+      <p>
+        Twenty laps, head-to-head. The car preferred the inside line at T3 all weekend, so we let
+        it. No bumper contact across the whole final — the safety margin came from the MPC
+        fallback, not from driving slow.
+      </p>
+      <div class="tele" style="margin-bottom:32px">
+        <div class="hero-eyebrow" style="margin-bottom:16px">Final · session data</div>
+        <div class="tele-row"><span class="k">Best lap</span><span class="v red">00:41.8</span></div>
+        <div class="tele-row"><span class="k">Avg speed</span><span class="v">7.9 m/s</span></div>
+        <div class="tele-row"><span class="k">Contacts</span><span class="v">0</span></div>
+        <div class="tele-row"><span class="k">Result</span><span class="v">P3</span></div>
+      </div>
+      <p>
+        What nearly didn't work: the LiDAR mount loosened during quali and we caught it in the pit
+        with 4 minutes on the clock. New thread-locker is now on the pre-race checklist.
+      </p>
+    </div>
+    <div class="checkered" style="padding:24px 0">🏁</div>
+    <a class="btn ghost" href="/pit-notes/" style="text-decoration:none">All pit notes</a>
+  </article>
+</Base>

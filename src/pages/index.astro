@@ -1,0 +1,171 @@
+---
+import Base from "../layouts/Base.astro";
+import NoteCard from "../components/NoteCard.astro";
+import { icons } from "../components/icons";
+import { pitNotes } from "../data/pit-notes";
+
+const notesPreview = pitNotes.slice(0, 3);
+---
+
+<Base
+  active="home"
+  description="NTU DeepSpeed is Nanyang Technological University's autonomous racing team. We build and program 1:10 scale autonomous race cars — LiDAR, planning, and control."
+>
+  <section class="drive-hero">
+    <div class="drive-stage">
+      <video class="drive-video" src="/assets/drive.mp4" autoplay muted loop playsinline preload="auto"></video>
+      <div class="drive-vignette"></div>
+      <div class="drive-grid"></div>
+      <div class="drive-overlay">
+        <h1 class="hero-display">NTU<br /><span>Deep</span><span class="red">Speed</span></h1>
+        <p class="hero-sub" style="max-width:42ch;margin-top:20px">
+          We build and program 1:10 scale autonomous race cars. No driver, no camera — just LiDAR,
+          planning, and control.
+        </p>
+        <div class="drive-actions">
+          <a class="btn accent" href="/achievements/" style="text-decoration:none">
+            Our Achievements
+            <Fragment set:html={icons.arrowRight()} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-grid">
+    <div class="stat-panel hot"><div class="k">Best lap</div><div class="v">00:41.8</div><div class="foot">Yokohama · ICRA 24</div></div>
+    <div class="stat-panel"><div class="k">Top speed</div><div class="v">9.4<span class="u"> m/s</span></div><div class="foot">Sim · Sep 25</div></div>
+    <div class="stat-panel"><div class="k">Members</div><div class="v">14</div><div class="foot">EEE · CCE · MAE</div></div>
+    <div class="stat-panel"><div class="k">Podiums</div><div class="v">03</div><div class="foot">Since 2024</div></div>
+  </div>
+
+  <section class="sec">
+    <div>
+      <div class="sec-num">§ 01</div>
+      <h2 class="sec-h">Who we are</h2>
+    </div>
+    <div>
+      <p class="sec-lede">
+        DeepSpeed is Nanyang Technological University's autonomous racing team. We design, build,
+        and program 1:10 scale race cars that drive themselves — perception, planning, and control,
+        all written in-house.
+      </p>
+      <p class="sec-lede" style="margin-top:16px">
+        14 members across EEE, CCE, and MAE. One car. 8 hours a week, more before a race.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec-plain">
+    <div class="split-2" style="margin-bottom:40px">
+      <div>
+        <div class="sec-num">§ 02</div>
+        <h2 class="sec-h">What is RoboRacer</h2>
+      </div>
+      <p class="sec-lede">
+        RoboRacer — formerly F1Tenth — is the international autonomous racing league. 1:10 scale
+        cars on real tracks, head-to-head. No drivers: each car maps, plans, and overtakes on its
+        own. Fastest clean lap wins.
+      </p>
+    </div>
+    <div class="car-layout">
+      <div class="car-vis">
+        <div class="tag">Top-down · scale 1 : 10</div>
+        <svg class="car-icon" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 100 L 70 60 L 330 60 L 370 100 L 370 120 L 330 160 L 70 160 L 30 120 Z"></path>
+          <path d="M 130 80 L 270 80 L 280 110 L 270 140 L 130 140 L 120 110 Z"></path>
+          <rect x="60" y="40" width="40" height="22" rx="2"></rect>
+          <rect x="60" y="158" width="40" height="22" rx="2"></rect>
+          <rect x="300" y="40" width="40" height="22" rx="2"></rect>
+          <rect x="300" y="158" width="40" height="22" rx="2"></rect>
+          <circle cx="200" cy="110" r="14"></circle>
+          <circle cx="200" cy="110" r="4"></circle>
+          <path d="M 360 95 L 380 95 M 360 125 L 380 125"></path>
+        </svg>
+        <div class="num"><span class="hash">#</span>07</div>
+      </div>
+      <div class="spec-list">
+        <div class="row"><span class="k">Scale</span><span class="v">1 : 10 · ~4 kg</span></div>
+        <div class="row"><span class="k">Sensing</span><span class="v">LiDAR + IMU</span></div>
+        <div class="row"><span class="k">Compute</span><span class="v">Onboard · Jetson Orin NX</span></div>
+        <div class="row"><span class="k">Format</span><span class="v">Head-to-head · 10 laps</span></div>
+        <div class="row"><span class="k">Win condition</span><span class="v">Fastest clean lap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div>
+      <div class="sec-num">§ 03</div>
+      <h2 class="sec-h">From the pit notes</h2>
+    </div>
+    <div>
+      <p class="sec-lede">
+        Race reports, engineering write-ups, and what we learned soldering at 2am. Written by the
+        team, for anyone building fast robots.
+      </p>
+      <a class="btn ghost" href="/pit-notes/" style="text-decoration:none;margin-top:24px">All pit notes</a>
+    </div>
+  </section>
+  <div class="notes-grid">
+    {notesPreview.map((note) => <NoteCard note={note} />)}
+  </div>
+
+  <section class="sec" id="join">
+    <div>
+      <div class="sec-num">§ 04</div>
+      <h2 class="sec-h">Join the team</h2>
+    </div>
+    <div>
+      <p class="sec-lede">
+        Applications open on a yearly basis. We expect ROS 2 and comfort with C++ or Python. Follow
+        our social media for when positions open.
+      </p>
+      <span
+        class="btn accent"
+        aria-disabled="true"
+        style="text-decoration:none;margin-top:24px;opacity:0.4;cursor:not-allowed;pointer-events:none"
+        >Application cycle over — follow on social media for more</span
+      >
+    </div>
+  </section>
+
+  <section class="sec-plain" style="padding-bottom:24px">
+    <div class="split-2" style="margin-bottom:40px">
+      <div>
+        <div class="sec-num">§ 05</div>
+        <h2 class="sec-h">Sponsors</h2>
+      </div>
+      <div>
+        <p class="sec-lede">
+          We race with your logo on the shell. Sponsorship goes straight to the grid — compute,
+          travel, and tires.
+        </p>
+        <a class="btn ghost" href="/contact/" style="text-decoration:none;margin-top:24px">Partner with us</a>
+      </div>
+    </div>
+    <div class="sponsor-row">
+      <div class="sponsor-box">
+        <img src="/assets/ntu-logo.png" alt="Nanyang Technological University, Singapore" />
+      </div>
+      <div class="sponsor-box">
+        <img class="bleed" src="/assets/ccds.png" alt="NTU College of Computing and Data Science" />
+      </div>
+    </div>
+  </section>
+
+  <div class="checkered">🏁</div>
+</Base>
+
+<script>
+  // If the hero footage isn't present (or fails to load), fall back to the
+  // dark stage — grid + vignette still frame the overlay.
+  const hero = document.querySelector<HTMLElement>(".drive-hero");
+  const video = hero?.querySelector<HTMLVideoElement>("video");
+  if (hero && video) {
+    video.addEventListener("error", () => hero.classList.add("no-video"), true);
+    video.play().catch(() => {
+      /* autoplay rejection is fine — the poster frame still shows */
+    });
+  }
+</script>

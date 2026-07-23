@@ -1,0 +1,74 @@
+---
+import Base from "../layouts/Base.astro";
+import { icons } from "../components/icons";
+import { SITE } from "../config";
+
+const rows = [
+  {
+    icon: icons.email(16),
+    label: "Email",
+    href: SITE.links.email,
+    value: SITE.contact.email,
+    external: false,
+  },
+  {
+    icon: icons.instagram(16),
+    label: "Instagram",
+    href: SITE.links.instagram,
+    value: SITE.contact.instagramHandle,
+    external: true,
+  },
+  {
+    icon: icons.linkedin(16),
+    label: "LinkedIn",
+    href: SITE.links.linkedin,
+    value: SITE.contact.linkedinName,
+    external: true,
+  },
+  {
+    icon: icons.github(16),
+    label: "GitHub",
+    href: SITE.links.github,
+    value: SITE.contact.githubName,
+    external: true,
+  },
+];
+---
+
+<Base
+  active="contact"
+  title="Contact us"
+  description="Sponsors, collaborators, press — reach out to NTU DeepSpeed. We reply within a few days."
+>
+  <div class="hero-eyebrow" style="margin-bottom:8px">Get in touch</div>
+  <h1 class="hero-h" style="margin-bottom:8px">Contact us</h1>
+  <p class="hero-sub" style="margin-bottom:40px">
+    Sponsors, collaborators, press — reach out. We reply within a few days.
+  </p>
+  <div class="contact-list">
+    {rows.map((row) => (
+      <div class="row">
+        <span class="k">
+          <Fragment set:html={row.icon} />
+          {row.label}
+        </span>
+        <a
+          class="v"
+          href={row.href}
+          target={row.external ? "_blank" : undefined}
+          rel={row.external ? "noopener" : undefined}
+        >
+          {row.value}
+          <Fragment set:html={icons.external()} />
+        </a>
+      </div>
+    ))}
+    <div class="row multiline">
+      <span class="k">
+        <Fragment set:html={icons.location()} />
+        Address
+      </span>
+      <span class="v" set:html={SITE.contact.address.join("<br>")} />
+    </div>
+  </div>
+</Base>

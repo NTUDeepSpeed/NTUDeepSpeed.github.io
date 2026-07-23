@@ -1,0 +1,25 @@
+---
+import { NAV_ITEMS, SITE, type PageId } from "../config";
+
+interface Props {
+  /** Current page — highlights its nav item. */
+  active: PageId;
+}
+const { active } = Astro.props;
+---
+
+<header class="hdr">
+  <a href="/" class="hdr-home-link">
+    <img src="/assets/logo-white.png" alt="DeepSpeed" style="height:34px;display:block" />
+    <span class="wm">DeepSpeed</span>
+  </a>
+  <nav class="hdr-nav" aria-label="Main">
+    {NAV_ITEMS.map((item) => (
+      <a href={item.href} class:list={{ on: item.id === active }}>{item.label}</a>
+    ))}
+  </nav>
+  <div class="hdr-right">
+    {SITE.showLiveChip && <span class="live-chip"><span class="d"></span>Live</span>}
+    {active !== "home" && <a class="btn accent join" href="/#join">Join</a>}
+  </div>
+</header>
