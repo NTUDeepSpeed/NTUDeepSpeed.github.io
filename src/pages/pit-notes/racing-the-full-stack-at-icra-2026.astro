@@ -1,0 +1,133 @@
+---
+import Base from "../../layouts/Base.astro";
+import { icons } from "../../components/icons";
+---
+
+<Base
+  active="pit-notes"
+  title="Racing the full stack at ICRA 2026"
+  description="6th of 78 in sim qualifying, top-10 on the physical track, and our complete autonomy pipeline's first race — five days at the 27th RoboRacer competition in Vienna."
+>
+  <article class="article-wrap">
+    <a href="/pit-notes/" class="article-back">
+      <Fragment set:html={icons.arrowLeft()} />
+      All pit notes
+    </a>
+    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)">
+      Race report · Jul 23 · 2026
+    </div>
+    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px">
+      Racing the full stack at ICRA 2026
+    </h1>
+    <p class="hero-sub" style="margin-bottom:24px">
+      Our complete autonomy pipeline's first race: five days at the 27th RoboRacer Autonomous
+      Racing Competition in Vienna, on both the virtual and the physical track.
+    </p>
+    <div class="article-byline">
+      <span>By the ICRA crew</span>
+      <span>·</span>
+      <span>4 min read</span>
+    </div>
+    <figure class="article-figure">
+      <img
+        class="article-media"
+        src="/assets/pit-notes/icra-2026/team-with-car.jpg"
+        alt="The NTU DeepSpeed ICRA crew holding the car beside the track in Vienna"
+      />
+      <figcaption>The ICRA crew, trackside in Vienna</figcaption>
+    </figure>
+    <div class="article-body">
+      <p>
+        We are proud to share that our team wrapped up an incredible week at the 27th RoboRacer
+        Autonomous Racing Competition at ICRA 2026 in Vienna! 🇦🇹
+      </p>
+      <div class="tele" style="margin-bottom:32px">
+        <div class="hero-eyebrow" style="margin-bottom:16px">ICRA 2026 · results</div>
+        <div class="tele-row"><span class="k">Sim league · qualification</span><span class="v red">6th / 78</span></div>
+        <div class="tele-row"><span class="k">Sim league · final stage race</span><span class="v">11th</span></div>
+        <div class="tele-row"><span class="k">Physical · time trial</span><span class="v red">8th / 29</span></div>
+        <div class="tele-row"><span class="k">Physical · Classic Cup</span><span class="v">9th</span></div>
+      </div>
+      <h2>Sim Racing League</h2>
+      <p>
+        In the Sim Racing League we qualified 6th out of 78 teams, and went on to finish 11th in
+        the Final Stage Race.
+      </p>
+      <figure class="article-figure">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/icra-2026/sim-league-team.jpg"
+          alt="Team members at the TU Wien stand during the Sim Racing League"
+        />
+        <figcaption>Sim Racing League · TU Wien</figcaption>
+      </figure>
+      <h2>Physical racing</h2>
+      <p>
+        On the physical track we placed 8th out of 29 teams in the Time Trial and 9th in the
+        Classic Cup.
+      </p>
+      <figure class="article-figure">
+        <video
+          class="article-media"
+          src="/assets/pit-notes/icra-2026/race-run.mp4"
+          controls
+          muted
+          playsinline
+          preload="metadata"
+        ></video>
+        <figcaption>On track in Vienna</figcaption>
+      </figure>
+      <figure class="article-figure">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/icra-2026/time-trial.jpg"
+          alt="The car mid-run on the physical track, lined with orange barriers"
+        />
+        <figcaption>Time Trial</figcaption>
+      </figure>
+      <p>
+        These results reflect how far we've come as a team. Not long ago, we competed at ICCAS
+        2025 in Korea with a purely reactive system. Over the past months, we pushed ourselves to
+        build a complete autonomy pipeline: mapping, localization, perception, planning, state
+        machine, and control, and put it to the test on the international stage. Watching the full
+        pipeline perform under real race conditions for the first time was a milestone we'll carry
+        into everything we build next.
+      </p>
+      <figure class="article-figure">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/icra-2026/classic-cup.jpg"
+          alt="The car cornering past the orange barriers during the Classic Cup"
+        />
+        <figcaption>Classic Cup</figcaption>
+      </figure>
+      <h2>The community</h2>
+      <p>
+        These five days were an unforgettable experience for the team. We loved meeting so many
+        brilliant, like-minded individuals and were deeply inspired by the incredible innovations
+        happening in autonomous racing. We are excited to stay connected and push the boundaries
+        of this community!
+      </p>
+      <figure class="article-figure">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/icra-2026/arena-group.jpg"
+          alt="All competing teams gathered on the track for a group photo"
+        />
+        <figcaption>The RoboRacer field at ICRA 2026</figcaption>
+      </figure>
+      <p>
+        None of this would be possible without our ICRA team members, who dedicated their summer
+        break to making this happen. A special thanks to our professor and mentors for their
+        guidance and support, and to our schools for backing us all the way.
+      </p>
+      <p>
+        A special thanks to the amazing RoboRacer and ICRA organizers — thank you for building not
+        just a competition, but a global community. 🤝
+      </p>
+      <p>On to the next race. 🏎💨</p>
+    </div>
+    <div class="checkered" style="padding:24px 0">🏁</div>
+    <a class="btn ghost" href="/pit-notes/" style="text-decoration:none">All pit notes</a>
+  </article>
+</Base>

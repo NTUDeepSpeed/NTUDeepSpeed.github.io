@@ -65,7 +65,9 @@ src/
   fixed-aspect image slot.
 - **Add a race result** — prepend an entry to `src/data/achievements.ts` (list is newest-first).
 - **Add a pit note** — create `src/pages/pit-notes/<slug>.astro` (copy an existing article page as
-  a template) and prepend a matching card entry to `src/data/pit-notes.ts`.
+  a template) and prepend a matching card entry to `src/data/pit-notes.ts`. Article photos/videos
+  go in `public/assets/pit-notes/<slug>/`, rendered with the `.article-figure` / `.article-media`
+  classes from `site.css`.
 - **Race-day "Live" chip** — toggle `showLiveChip` in `src/config.ts`.
 
 ### Design system
@@ -76,12 +78,6 @@ record / live), `--flag-yellow` (caution / engineering), `--flag-green` (go / pa
 `--grid-cyan` (telemetry / data). Dark theme (`--ink-900` background) is the default; the brand
 "lives on black." Prefer reusing existing tokens/utility classes from `app.css`/`site.css` over
 introducing new colors or one-off styles.
-
-### Known content gaps
-
-`src/pages/pit-notes/p3-at-icra-2024.astro` is a sample article layout with placeholder body copy,
-and several `src/data/pit-notes.ts` entries currently point their `href` at that same sample page
-pending real write-ups — check before assuming every pit-note card links to a finished article.
 
 ## Git workflow
 

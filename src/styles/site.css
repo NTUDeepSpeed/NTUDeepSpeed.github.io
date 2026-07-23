@@ -122,6 +122,14 @@
   font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 32px;
 }
+.article-figure { margin: 0 0 32px; }
+.article-media {
+  display: block; width: 100%; border: 1px solid var(--line); border-radius: 2px;
+}
+.article-figure figcaption {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--fg-subtle); margin-top: 10px;
+}
 .article-body p { font-size: 17px; line-height: 1.7; color: var(--fg-muted); margin-bottom: 20px; }
 .article-body h2 { font-size: 28px; margin: 40px 0 16px; }
 
