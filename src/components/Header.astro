@@ -13,12 +13,36 @@ const { active } = Astro.props;
     <img src="/assets/logo-white.png" alt="DeepSpeed" style="height:34px;display:block" />
     <span class="wm">DeepSpeed</span>
   </a>
-  <nav class="hdr-nav" aria-label="Main">
+  <nav class="hdr-nav" id="hdr-nav" aria-label="Main">
     {NAV_ITEMS.map((item) => (
       <a href={item.href} class:list={{ on: item.id === active }}>{item.label}</a>
     ))}
   </nav>
   <div class="hdr-right">
     {SITE.showLiveChip && <span class="live-chip"><span class="d"></span>Live</span>}
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hdr-nav" aria-label="Open menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </div>
 </header>
+
+<script>
+  const hdr = document.querySelector<HTMLElement>(".hdr");
+  const toggle = hdr?.querySelector<HTMLButtonElement>(".nav-toggle");
+  if (hdr && toggle) {
+    const setOpen = (open: boolean) => {
+      hdr.classList.toggle("nav-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    toggle.addEventListener("click", () => setOpen(!hdr.classList.contains("nav-open")));
+    document.addEventListener("click", (e) => {
+      if (hdr.classList.contains("nav-open") && !hdr.contains(e.target as Node)) setOpen(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
+</script>

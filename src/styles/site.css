@@ -29,6 +29,22 @@
   text-decoration: none; padding: 9px 16px; font-size: 12px;
 }
 
+/* Hamburger toggle — hidden on desktop, shown by the responsive layer */
+.nav-toggle {
+  display: none;
+  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  background: transparent; border: 0; padding: 10px;
+  margin: -8px -10px -8px 0;
+  cursor: pointer;
+}
+.nav-toggle .bar {
+  width: 20px; height: 2px; background: var(--fg);
+  transition: transform var(--dur-base) var(--ease-mech), opacity var(--dur-fast) var(--ease-mech);
+}
+.hdr.nav-open .nav-toggle .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hdr.nav-open .nav-toggle .bar:nth-child(2) { opacity: 0; }
+.hdr.nav-open .nav-toggle .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ===== Footer ===== */
 .ft .ft-links { display: flex; gap: 20px; }
 .ft .ft-links a { display: flex; align-items: center; gap: 6px; }
@@ -160,25 +176,57 @@
 .drive-hero.no-video .drive-video { display: none; }
 
 /* ===== Responsive (the mockups are desktop-first; degrade gracefully) ===== */
+
+/* Header: collapse the nav into a hamburger dropdown before it runs out of room */
+@media (max-width: 860px) {
+  .hdr { padding: 12px 20px; }
+  .nav-toggle { display: flex; }
+  .hdr-nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 0; padding: 2px 20px 10px;
+    background: rgba(10, 10, 11, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    opacity: 0; transform: translateY(-6px); visibility: hidden;
+    transition: opacity var(--dur-base) var(--ease-mech),
+      transform var(--dur-base) var(--ease-mech),
+      visibility 0s linear var(--dur-base);
+  }
+  [data-theme="light"] .hdr-nav { background: rgba(244, 244, 245, 0.96); }
+  .hdr.nav-open .hdr-nav { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
+  .hdr-nav a { padding: 13px 0; font-size: 12px; border-bottom: 1px solid var(--line-faint); }
+  .hdr-nav a.on {
+    border-bottom: 1px solid var(--line-faint);
+    border-left: 2px solid var(--accent); padding-left: 12px;
+  }
+  .hdr-nav a:last-child, .hdr-nav a.on:last-child { border-bottom: 0; }
+}
+
 @media (max-width: 1024px) {
   .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .member-grid { grid-template-columns: repeat(3, 1fr); }
   .notes-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 768px) {
-  .hdr { flex-wrap: wrap; gap: 10px; padding: 12px 20px; }
-  .hdr-nav { flex-wrap: wrap; gap: 14px 20px; order: 3; width: 100%; }
   .main { padding: 32px 20px 64px; }
   .drive-hero { margin-top: -32px; height: 72vh; min-height: 480px; }
   .drive-overlay { left: 20px; right: 20px; bottom: 10vh; }
+  .drive-overlay .hero-display { font-size: clamp(40px, 11vw, 68px); }
+  .drive-actions { flex-wrap: wrap; }
   .sec, .split-2, .car-layout { grid-template-columns: 1fr !important; gap: 24px; }
   .member-grid { grid-template-columns: repeat(2, 1fr); }
   .notes-grid { grid-template-columns: 1fr !important; }
   .sponsor-row { flex-direction: column; }
   .ft { flex-direction: column; gap: 16px; text-align: center; }
+  .ft .ft-links { flex-wrap: wrap; justify-content: center; }
   .timeline-entry { grid-template-columns: 84px 20px 1fr; gap: 12px; }
+  .article-byline { flex-wrap: wrap; row-gap: 6px; }
 }
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: 1fr !important; }
   .member-grid { grid-template-columns: 1fr; }
+  .sec-h { font-size: 36px; }
+  .contact-list .row { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .contact-list span.v { text-align: left; }
 }
