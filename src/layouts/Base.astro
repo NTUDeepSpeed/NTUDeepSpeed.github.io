@@ -12,9 +12,44 @@ interface Props {
   /** Page <title> suffix; Home passes nothing and uses the site name alone. */
   title?: string;
   description: string;
+  /** Site-relative path of the social share image; 16:9-ish, ≥1200px wide. */
+  ogImage?: string;
+  /** OpenGraph type — pit note articles pass "article". */
+  ogType?: "website" | "article";
 }
-const { active, title, description } = Astro.props;
+const {
+  active,
+  title,
+  description,
+  ogImage = "/assets/pit-notes/icra-2026/team-with-car.jpg",
+  ogType = "website",
+} = Astro.props;
 const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — Autonomous Racing`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: Astro.site?.toString(),
+  logo: new URL("/assets/logo-white.png", Astro.site).toString(),
+  description:
+    "NTU DeepSpeed is Nanyang Technological University's autonomous racing team, building and programming 1:10 scale autonomous race cars for RoboRacer / F1Tenth competitions.",
+  email: SITE.contact.email,
+  sameAs: [SITE.links.github, SITE.links.instagram, SITE.links.linkedin],
+  parentOrganization: {
+    "@type": "CollegeOrUniversity",
+    name: "Nanyang Technological University",
+    url: "https://www.ntu.edu.sg",
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "50 Nanyang Avenue",
+    addressCountry: "SG",
+    postalCode: "639798",
+  },
+};
 ---
 
 <!doctype html>
@@ -24,10 +59,25 @@ const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — Autono
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0A0A0B" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_SG" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <slot name="head" />
   </head>
   <body>
     <div class="shell">
