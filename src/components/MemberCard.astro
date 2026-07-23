@@ -14,9 +14,14 @@ const initials = (
 const cropStyle = m.crop
   ? `--slot-s:${m.crop.s};--slot-x:${m.crop.x};--slot-y:${m.crop.y}`
   : undefined;
+
+const Tag = m.linkedin ? "a" : "div";
+const linkProps = m.linkedin
+  ? { href: m.linkedin, target: "_blank", rel: "noopener", style: "text-decoration:none" }
+  : {};
 ---
 
-<div class="member">
+<Tag class="member" {...linkProps}>
   <div class="ph" style="padding:0">
     {m.photo
       ? <img src={m.photo} alt={m.name} loading="lazy" style={cropStyle} />
@@ -26,8 +31,6 @@ const cropStyle = m.crop
     <div class="name">{m.name}</div>
     <div class="role">{m.role}</div>
     <div class="dept">{m.dept}</div>
-    {m.linkedin && (
-      <a href={m.linkedin} target="_blank" rel="noopener" class="li-link">LinkedIn ↗</a>
-    )}
+    {m.linkedin && <span class="li-link">LinkedIn ↗</span>}
   </div>
-</div>
+</Tag>
