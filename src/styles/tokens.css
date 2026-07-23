@@ -180,7 +180,7 @@
 /* ============================================================
    Semantic element styles — apply to plain tags
    ============================================================ */
-html { color-scheme: dark; }
+html { color-scheme: dark; overflow-x: hidden; }
 body {
   margin: 0;
   background: var(--bg);
@@ -190,6 +190,7 @@ body {
   line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 /* Display — for the "DEEPSPEED"-style brushy hero only */
