@@ -9,7 +9,7 @@ export interface SlotCrop {
 
 export interface Member {
   name: string;
-  role: "Mentor" | "Team Member";
+  role: "Advisor" | "Mentor" | "Team Member";
   dept: string;
   linkedin?: string;
   photo?: string;
@@ -20,7 +20,7 @@ export interface Member {
 export const team: Member[] = [
   {
     name: "Assoc Prof Arvind Easwaran",
-    role: "Mentor",
+    role: "Advisor",
     dept: "College of Computing and Data Science",
     linkedin: "https://www.linkedin.com/in/arvind-easwaran-066544292",
     photo: "/assets/team/team-1.jpg",
