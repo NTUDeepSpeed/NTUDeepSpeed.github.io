@@ -28,6 +28,7 @@
 .hdr-right .btn.join {
   text-decoration: none; padding: 9px 16px; font-size: 12px;
 }
+.hdr-ntu-logo { display: block; height: 40px; width: auto; }
 
 /* Hamburger toggle — hidden on desktop, shown by the responsive layer */
 .nav-toggle {
@@ -263,6 +264,7 @@
 @media (max-width: 860px) {
   .hdr { padding: 12px 20px; }
   .nav-toggle { display: flex; }
+  .hdr-ntu-logo { display: none; }
   .hdr-nav {
     position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; gap: 0; padding: 2px 20px 10px;
