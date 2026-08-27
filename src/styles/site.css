@@ -202,6 +202,35 @@
 }
 .article-toc a:hover, .article-toc a:hover::before { color: var(--accent); }
 
+/* Hardware rundown — one row per component. The part photos sit on white tiles
+   so the mostly-black hardware stays readable in either theme. */
+.hw-list { display: grid; gap: 10px; margin: 0 0 32px; }
+.hw-item {
+  display: grid; grid-template-columns: 116px 1fr; gap: 20px; align-items: center;
+  background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 2px;
+  padding: 14px;
+  transition: border-color var(--dur-fast) var(--ease-mech);
+}
+.hw-item:hover { border-color: var(--line-strong); }
+.hw-shot {
+  background: var(--ink-0w); border: 1px solid var(--line-faint); border-radius: 2px;
+  aspect-ratio: 1; padding: 8px;
+}
+.hw-shot img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.hw-meta {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; row-gap: 2px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 7px;
+}
+.hw-meta .n { color: var(--accent); }
+.hw-meta .part { color: var(--fg-subtle); letter-spacing: 0.1em; }
+.article-body .hw-name { font-size: 19px; margin: 0 0 6px; }
+.article-body .hw-desc { font-size: 15px; line-height: 1.65; margin: 0; max-width: 60ch; }
+@media (max-width: 560px) {
+  .hw-item { grid-template-columns: 84px 1fr; gap: 14px; padding: 12px; }
+  .hw-shot { padding: 6px; }
+}
+
 .article-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* ===== Contact ===== */

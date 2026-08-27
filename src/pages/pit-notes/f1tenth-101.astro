@@ -14,6 +14,45 @@ const sections = [
   { id: "sim-to-real", label: "From simulation to the real car" },
 ];
 
+// Sense → decide → act: the order a command travels through the car.
+const hardware = [
+  {
+    slug: "lidar",
+    name: "LiDAR",
+    part: "Hokuyo UST-10LX",
+    desc: "Measures distances to surrounding objects with a 2D laser scan. This is the car's only view of the world.",
+    alt: "Hokuyo UST-10LX scanning laser rangefinder — a black cube with an orange rotating cap",
+  },
+  {
+    slug: "computer",
+    name: "Onboard computer",
+    part: "Jetson Orin NX 8GB · Intel NUC 14 Pro AI",
+    desc: "Runs ROS 2 and every autonomous driving algorithm on the car.",
+    alt: "Intel NUC 14 Pro AI mini PC — a small black box with USB and Thunderbolt ports on the front",
+  },
+  {
+    slug: "vesc",
+    name: "VESC",
+    part: "TRAMPA VESC 6 MkVI",
+    desc: "The electronic speed controller. It takes a throttle command and drives the brushless motor accordingly.",
+    alt: "TRAMPA VESC 6 MkVI electronic speed controller — a small black circuit board with three motor leads and an XT60 battery plug",
+  },
+  {
+    slug: "motor",
+    name: "Motor",
+    part: "Hobbywing EZRUN 3652 G3 · 3300 kV",
+    desc: "Provides drive to the wheels.",
+    alt: "Hobbywing EZRUN 3652 G3 brushless motor — a finned black cylinder with three bullet-terminated leads",
+  },
+  {
+    slug: "servo",
+    name: "Steering servo",
+    part: "Highest Korea B210",
+    desc: "Sets the steering angle of the front wheels.",
+    alt: "Highest Korea B210 high-voltage steering servo — a black servo with a gold label and a metal output spline",
+  },
+];
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -100,7 +139,7 @@ const articleSchema = {
       <div class="tele" style="margin-bottom:32px">
         <div class="hero-eyebrow" style="margin-bottom:16px">The platform · at a glance</div>
         <div class="tele-row"><span class="k">Scale</span><span class="v red">1 / 10</span></div>
-        <div class="tele-row"><span class="k">Sensing</span><span class="v">2D LiDAR + IMU</span></div>
+        <div class="tele-row"><span class="k">Sensing</span><span class="v">2D LiDAR</span></div>
         <div class="tele-row"><span class="k">Compute</span><span class="v">Jetson Orin NX 8GB</span></div>
         <div class="tele-row"><span class="k">Middleware</span><span class="v">ROS 2</span></div>
         <div class="tele-row"><span class="k">Licence</span><span class="v">Open source</span></div>
@@ -110,42 +149,33 @@ const articleSchema = {
         Although compact, the F1TENTH platform contains many of the same components found in larger
         autonomous vehicles.
       </p>
-      <ul>
-        <li>
-          <strong>LiDAR — Hokuyo UST-10LX.</strong> Measures distances to surrounding objects with a
-          2D laser scan. This is the car's only view of the world.
-        </li>
-        <li>
-          <strong>IMU — Aceinna OpenIMU300RI.</strong> Estimates vehicle motion and orientation from
-          acceleration and angular rate.
-        </li>
-        <li>
-          <strong>VESC — TRAMPA VESC 6 MkVI.</strong> The electronic speed controller that drives the
-          brushless motor.
-        </li>
-        <li>
-          <strong>Steering servo — Highest Korea B210.</strong> Sets the steering angle of the front
-          wheels.
-        </li>
-        <li>
-          <strong>Onboard computer — Jetson Orin NX 8GB.</strong> Runs ROS 2 and every autonomous
-          driving algorithm on the car.
-        </li>
-        <li>
-          <strong>Motor — Hobbywing EZRUN 3652 G3, 3300 kV.</strong> Provides drive to the wheels.
-        </li>
-      </ul>
-      <figure class="article-figure wide plate">
-        <img
-          class="article-media"
-          src="/assets/pit-notes/f1tenth-101/hardware.webp"
-          alt="Labelled grid of the six key F1TENTH components: LiDAR, IMU, VESC, steering servo, onboard computer and brushless motor"
-          loading="lazy"
-        />
-        <figcaption>Key hardware components on an F1TENTH car</figcaption>
-      </figure>
+      <div class="hw-list">
+        {
+          hardware.map((h, i) => (
+            <article class="hw-item">
+              <div class="hw-shot">
+                <img
+                  src={`/assets/pit-notes/f1tenth-101/hardware/${h.slug}.webp`}
+                  alt={h.alt}
+                  width="560"
+                  height="560"
+                  loading="lazy"
+                />
+              </div>
+              <div class="hw-text">
+                <div class="hw-meta">
+                  <span class="n">{String(i + 1).padStart(2, "0")}</span>
+                  <span class="part">{h.part}</span>
+                </div>
+                <h3 class="hw-name">{h.name}</h3>
+                <p class="hw-desc">{h.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
       <p>
-        Each sensor contributes different information, and it's the combination that lets the
+        Each part does exactly one job. It's the chain — scan, decide, actuate — that lets the
         vehicle perceive its surroundings and make driving decisions in real time.
       </p>
       <h2 id="software">3. Software stack</h2>
