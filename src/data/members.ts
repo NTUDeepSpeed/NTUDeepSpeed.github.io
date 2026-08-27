@@ -26,20 +26,6 @@ export const team: Member[] = [
     photo: "/assets/team/team-1.jpg",
   },
   {
-    name: "Eduardo de Conto",
-    role: "Mentor",
-    dept: "PhD, CCDS",
-    linkedin: "https://www.linkedin.com/in/eduardoconto",
-    photo: "/assets/team/eduardo.jpg",
-  },
-  {
-    name: "Subrat Prasad Panda",
-    role: "Mentor",
-    dept: "PhD, CCDS",
-    linkedin: "https://www.linkedin.com/in/subratpp",
-    photo: "/assets/team/subrat.jpg",
-  },
-  {
     name: "Raditya Chema Hafizh Pradigta",
     role: "Mentor",
     dept: "PhD, IGP-ERI@N",
@@ -99,6 +85,20 @@ export const team: Member[] = [
 ];
 
 export const alumni: Member[] = [
+  {
+    name: "Eduardo de Conto",
+    role: "Mentor",
+    dept: "PhD, CCDS",
+    linkedin: "https://www.linkedin.com/in/eduardoconto",
+    photo: "/assets/team/eduardo.jpg",
+  },
+  {
+    name: "Subrat Prasad Panda",
+    role: "Mentor",
+    dept: "PhD, CCDS",
+    linkedin: "https://www.linkedin.com/in/subratpp",
+    photo: "/assets/team/subrat.jpg",
+  },
   { name: "Michael Yuhas", role: "Mentor", dept: "PhD, IGP", photo: "/assets/team/team-2.jpg" },
   { name: "Benjamin Teh", role: "Team Member", dept: "Graduated, School of MAE", photo: "/assets/team/team-3.jpg" },
   { name: "Luke Toh", role: "Team Member", dept: "Graduated, School of MAE", photo: "/assets/team/team-4.jpg" },
