@@ -266,11 +266,16 @@
 
 /* ===== Responsive (the mockups are desktop-first; degrade gracefully) ===== */
 
+/* NTU/CCDS mark is wide enough to force the nav to wrap before the hamburger
+   breakpoint kicks in — drop it a bit earlier than the hamburger swap. */
+@media (max-width: 940px) {
+  .hdr-ntu-logo { display: none; }
+}
+
 /* Header: collapse the nav into a hamburger dropdown before it runs out of room */
 @media (max-width: 860px) {
   .hdr { padding: 12px 20px; }
   .nav-toggle { display: flex; }
-  .hdr-ntu-logo { display: none; }
   .hdr-nav {
     position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; gap: 0; padding: 2px 20px 10px;
