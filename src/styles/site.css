@@ -110,6 +110,7 @@
 }
 .timeline-entry.podium .tl-result { border-color: var(--accent); color: var(--accent); }
 .timeline-entry.upcoming .tl-result { border-color: var(--fg-muted); color: var(--fg-muted); }
+.timeline-entry .tl-result.tl-qual { border-color: var(--race-red); color: var(--race-red); }
 .timeline-entry .tl-loc {
   font-family: var(--font-body); font-size: 11px; letter-spacing: 0.08em;
   color: var(--fg-muted); margin: 6px 0 8px;
@@ -117,6 +118,14 @@
 .timeline-entry .tl-detail {
   font-size: 14px; line-height: 1.55; color: var(--fg-muted); margin: 0; max-width: 56ch;
 }
+.timeline-entry .tl-more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--fg); text-decoration: none;
+}
+.timeline-entry .tl-more svg { transition: transform var(--dur-fast) var(--ease-mech); }
+.timeline-entry .tl-more:hover { color: var(--accent); }
+.timeline-entry .tl-more:hover svg { transform: translateX(4px); }
 
 /* ===== Article ===== */
 .article-wrap { max-width: 720px; margin: 0 auto; }

@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import NoteCard from "../components/NoteCard.astro";
 import { icons } from "../components/icons";
 import { pitNotes } from "../data/pit-notes";
+import { achievementStats } from "../data/achievements";
 
 const notesPreview = pitNotes.slice(0, 3);
 ---
@@ -36,7 +37,7 @@ const notesPreview = pitNotes.slice(0, 3);
     <div class="stat-panel hot"><div class="k">Best lap</div><div class="v">00:41.8</div><div class="foot">Yokohama · ICRA 24</div></div>
     <div class="stat-panel"><div class="k">Top speed</div><div class="v">9.4<span class="u"> m/s</span></div><div class="foot">Sim · Sep 25</div></div>
     <div class="stat-panel"><div class="k">Members</div><div class="v">14</div><div class="foot">EEE · CCE · MAE</div></div>
-    <div class="stat-panel"><div class="k">Podiums</div><div class="v">03</div><div class="foot">Since 2024</div></div>
+    <div class="stat-panel"><div class="k">Races</div><div class="v">{achievementStats.races.value}</div><div class="foot">{achievementStats.races.foot}</div></div>
   </div>
 
   <section class="sec">

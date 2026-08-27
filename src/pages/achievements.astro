@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { achievements, achievementStats, splitOrdinal } from "../data/achievements";
+import { icons } from "../components/icons";
 ---
 
 <Base
@@ -54,10 +55,17 @@ import { achievements, achievementStats, splitOrdinal } from "../data/achievemen
                   e.name
                 )}
               </h3>
+              {e.qualResult && <span class="tl-result tl-qual">{e.qualResult}</span>}
               {e.result && <span class="tl-result">{e.result}</span>}
             </div>
             <div class="tl-loc">{e.loc}</div>
             {e.detail && <p class="tl-detail">{e.detail}</p>}
+            {e.readMore && (
+              <a class="tl-more" href={e.readMore}>
+                Read the race report
+                <Fragment set:html={icons.arrowRight(11)} />
+              </a>
+            )}
           </div>
         </div>
       );
