@@ -61,10 +61,10 @@
 
 .sponsor-panel {
   background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 8px;
-  display: flex; align-items: center; justify-content: flex-start;
-  padding: 40px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: 56px; overflow: hidden;
 }
-.sponsor-panel img { display: block; height: 72px; width: auto; max-width: 100%; object-fit: contain; }
+.sponsor-panel img { display: block; height: 112px; width: auto; max-width: 100%; object-fit: contain; }
 
 .checkered { text-align: center; font-size: 22px; padding: 32px 0 0; }
 
@@ -299,8 +299,8 @@
   .sec, .split-2, .car-layout { grid-template-columns: 1fr !important; gap: 24px; }
   .member-grid { grid-template-columns: repeat(2, 1fr); }
   .notes-grid { grid-template-columns: 1fr !important; }
-  .sponsor-panel { padding: 28px; }
-  .sponsor-panel img { height: 56px; }
+  .sponsor-panel { padding: 32px; }
+  .sponsor-panel img { height: 72px; }
   .ft { flex-direction: column; gap: 16px; text-align: center; }
   .ft .ft-links { flex-wrap: wrap; justify-content: center; }
   .timeline-entry { grid-template-columns: 84px 20px 1fr; gap: 12px; }
