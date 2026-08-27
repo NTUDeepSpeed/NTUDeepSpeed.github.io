@@ -151,12 +151,52 @@
 .article-media {
   display: block; width: 100%; border: 1px solid var(--line); border-radius: 2px;
 }
+/* Diagrams drawn on white — mount them on a plate so the light ground reads as intentional. */
+.article-figure.plate .article-media {
+  background: var(--ink-0w); border-color: var(--line-strong); padding: 16px;
+}
+/* Detail-dense figures break out past the 720px text column so labels stay readable. */
+@media (min-width: 900px) {
+  .article-figure.wide {
+    width: min(980px, calc(100vw - 80px));
+    margin-left: 50%; transform: translateX(-50%);
+  }
+}
 .article-figure figcaption {
   font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--fg-subtle); margin-top: 10px;
 }
 .article-body p { font-size: 17px; line-height: 1.7; color: var(--fg-muted); margin-bottom: 20px; }
-.article-body h2 { font-size: 28px; margin: 40px 0 16px; }
+.article-body h2 { font-size: 28px; margin: 40px 0 16px; scroll-margin-top: 84px; }
+.article-body h3 { font-size: 20px; margin: 32px 0 12px; }
+.article-body strong { color: var(--fg); font-weight: 600; }
+.article-body ul { margin: 0 0 20px; padding-left: 20px; }
+.article-body li {
+  font-size: 17px; line-height: 1.7; color: var(--fg-muted); margin-bottom: 10px;
+  max-width: 65ch;
+}
+.article-body li::marker { color: var(--accent); }
+
+/* Contents — a numbered index of the article's sections. */
+.article-toc {
+  border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 2px;
+  background: var(--bg-elev-1); padding: 18px 22px; margin: 0 0 40px;
+}
+.article-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.article-toc li { border-bottom: 1px solid var(--line-faint); }
+.article-toc li:last-child { border-bottom: 0; }
+.article-toc a {
+  display: flex; align-items: baseline; gap: 14px; padding: 9px 0;
+  font-size: 15px; text-decoration: none; color: var(--fg);
+}
+.article-toc a::before {
+  counter-increment: toc; content: counter(toc, decimal-leading-zero);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  color: var(--fg-subtle); min-width: 20px;
+}
+.article-toc a:hover, .article-toc a:hover::before { color: var(--accent); }
+
+.article-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* ===== Contact ===== */
 .contact-list { border-top: 1px solid var(--line); }

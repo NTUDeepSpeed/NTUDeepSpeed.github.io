@@ -14,6 +14,16 @@ export interface PitNote {
 /** Newest first. Add new write-ups here and create a page under pit-notes/. */
 export const pitNotes: PitNote[] = [
   {
+    tag: "Explainer",
+    date: "Aug 27",
+    year: "2026",
+    title: "F1TENTH 101: a beginner's guide to autonomous racing",
+    blurb:
+      "What the 1/10-scale platform is, what's bolted to the car, and how a LiDAR scan turns into a steering angle — the short version, for anyone starting out.",
+    href: "/pit-notes/f1tenth-101/",
+    thumb: "/assets/pit-notes/f1tenth-101/thumb.jpg",
+  },
+  {
     tag: "Race report",
     date: "Jul 23",
     year: "2026",

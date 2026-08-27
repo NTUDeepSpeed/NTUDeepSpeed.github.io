@@ -1,0 +1,247 @@
+---
+import Base from "../../layouts/Base.astro";
+import { icons } from "../../components/icons";
+
+const description =
+  "What the 1/10-scale platform is, what's bolted to the car, and how a LiDAR scan becomes a steering angle — a beginner's guide to F1TENTH (now RoboRacer) autonomous racing.";
+
+const sections = [
+  { id: "what-is-f1tenth", label: "What is F1TENTH?" },
+  { id: "hardware", label: "Hardware overview" },
+  { id: "software", label: "Software stack" },
+  { id: "together", label: "How everything works together" },
+  { id: "resources", label: "Learning resources" },
+  { id: "sim-to-real", label: "From simulation to the real car" },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "F1TENTH 101: a beginner's guide to autonomous racing",
+  description,
+  image: new URL("/assets/pit-notes/f1tenth-101/thumb.jpg", Astro.site).toString(),
+  datePublished: "2026-08-27",
+  author: { "@type": "Organization", name: "NTU DeepSpeed", url: Astro.site?.toString() },
+  publisher: { "@type": "Organization", name: "NTU DeepSpeed", url: Astro.site?.toString() },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+};
+---
+
+<Base
+  active="pit-notes"
+  title="F1TENTH 101: a beginner's guide to autonomous racing"
+  description={description}
+  ogType="article"
+  ogImage="/assets/pit-notes/f1tenth-101/thumb.jpg"
+>
+  <Fragment slot="head">
+    <meta property="article:published_time" content="2026-08-27" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  </Fragment>
+  <article class="article-wrap">
+    <a href="/pit-notes/" class="article-back">
+      <Fragment set:html={icons.arrowLeft()} />
+      All pit notes
+    </a>
+    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)">
+      Explainer · Aug 27 · 2026
+    </div>
+    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px">F1TENTH 101</h1>
+    <p class="hero-sub" style="margin-bottom:24px">
+      A beginner's guide to autonomous racing: what the 1/10-scale platform is, what's bolted to
+      the car, and how a LiDAR scan turns into a steering angle.
+    </p>
+    <div class="article-byline">
+      <span>By the DeepSpeed team</span>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+    <figure class="article-figure">
+      <img
+        class="article-media"
+        src="/assets/pit-notes/f1tenth-101/car.jpg"
+        alt="The NTU DeepSpeed F1TENTH car — a 1/10-scale race car with a blue rear wing, LiDAR puck and exposed electronics"
+      />
+      <figcaption>Our car · 1/10 scale · no driver, no camera</figcaption>
+    </figure>
+    <div class="article-body">
+      <p>
+        <a href="https://roboracer.ai/" rel="noopener">F1TENTH</a> — now called RoboRacer — is an
+        open-source educational and research project built around 1/10th-scale autonomous
+        racecars. It's the platform we race, and it's where every new member on the team starts.
+        This is the short version of what it is and how it works.
+      </p>
+      <nav class="article-toc" aria-label="Contents">
+        <div class="hero-eyebrow" style="margin-bottom:10px">Contents</div>
+        <ol>
+          {sections.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}
+        </ol>
+      </nav>
+      <h2 id="what-is-f1tenth">1. What is F1TENTH?</h2>
+      <p>
+        Imagine developing software capable of driving a race car at the limit without crashing.
+        Doing that with a full-sized vehicle is expensive, risky and inaccessible to most students.
+        F1TENTH solves this by bringing autonomous racing to a 1/10-scale platform that is
+        affordable, open-source and widely used in universities and research labs.
+      </p>
+      <p>
+        F1TENTH is much more than a miniature RC car. It is a complete autonomous driving platform
+        designed for education and research. The same perception, planning and control concepts
+        used in full-sized autonomous vehicles are implemented on a compact race car that can
+        safely operate indoors or on dedicated tracks.
+      </p>
+      <p>
+        Students can experiment with localization, mapping, obstacle avoidance, trajectory planning
+        and autonomous racing without needing access to commercial autonomous vehicles. That makes
+        the platform suitable for both beginners learning robotics and researchers evaluating new
+        algorithms. Today it's used worldwide for coursework, research projects and international
+        racing competitions — one of the most accessible ways to learn modern robotics.
+      </p>
+      <div class="tele" style="margin-bottom:32px">
+        <div class="hero-eyebrow" style="margin-bottom:16px">The platform · at a glance</div>
+        <div class="tele-row"><span class="k">Scale</span><span class="v red">1 / 10</span></div>
+        <div class="tele-row"><span class="k">Sensing</span><span class="v">2D LiDAR + IMU</span></div>
+        <div class="tele-row"><span class="k">Compute</span><span class="v">Jetson Orin NX 8GB</span></div>
+        <div class="tele-row"><span class="k">Middleware</span><span class="v">ROS 2</span></div>
+        <div class="tele-row"><span class="k">Licence</span><span class="v">Open source</span></div>
+      </div>
+      <h2 id="hardware">2. Hardware overview</h2>
+      <p>
+        Although compact, the F1TENTH platform contains many of the same components found in larger
+        autonomous vehicles.
+      </p>
+      <ul>
+        <li>
+          <strong>LiDAR — Hokuyo UST-10LX.</strong> Measures distances to surrounding objects with a
+          2D laser scan. This is the car's only view of the world.
+        </li>
+        <li>
+          <strong>IMU — Aceinna OpenIMU300RI.</strong> Estimates vehicle motion and orientation from
+          acceleration and angular rate.
+        </li>
+        <li>
+          <strong>VESC — TRAMPA VESC 6 MkVI.</strong> The electronic speed controller that drives the
+          brushless motor.
+        </li>
+        <li>
+          <strong>Steering servo — Highest Korea B210.</strong> Sets the steering angle of the front
+          wheels.
+        </li>
+        <li>
+          <strong>Onboard computer — Jetson Orin NX 8GB.</strong> Runs ROS 2 and every autonomous
+          driving algorithm on the car.
+        </li>
+        <li>
+          <strong>Motor — Hobbywing EZRUN 3652 G3, 3300 kV.</strong> Provides drive to the wheels.
+        </li>
+      </ul>
+      <figure class="article-figure wide plate">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/f1tenth-101/hardware.webp"
+          alt="Labelled grid of the six key F1TENTH components: LiDAR, IMU, VESC, steering servo, onboard computer and brushless motor"
+          loading="lazy"
+        />
+        <figcaption>Key hardware components on an F1TENTH car</figcaption>
+      </figure>
+      <p>
+        Each sensor contributes different information, and it's the combination that lets the
+        vehicle perceive its surroundings and make driving decisions in real time.
+      </p>
+      <h2 id="software">3. Software stack</h2>
+      <p>
+        The intelligence of the vehicle comes from software running on ROS 2. Rather than being one
+        large program, the system is split into independent ROS nodes that communicate by
+        publishing and subscribing to topics.
+      </p>
+      <figure class="article-figure wide plate">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/f1tenth-101/software-stack.webp"
+          alt="Diagram of the F1TENTH software stack: sensors, perception, localization, planning, control and actuators, with a feedback loop back to the sensors"
+          loading="lazy"
+        />
+        <figcaption>Sensors → perception → localization → planning → control → actuators</figcaption>
+      </figure>
+      <p>
+        <strong>Perception</strong> interprets sensor data, <strong>localization</strong> estimates
+        the vehicle's position on the track, <strong>planning</strong> decides where the car should
+        go, and <strong>control</strong> converts those decisions into steering and throttle
+        commands. This modular design means each component can be developed and tested
+        independently — which matters when six people are working on the same car the week before a
+        race.
+      </p>
+      <h2 id="together">4. How everything works together</h2>
+      <p>
+        Consider the vehicle approaching a sharp corner. The LiDAR continuously scans the
+        environment while the perception system identifies free space. The planner computes a safe
+        racing line, the controller determines the appropriate steering angle and speed, and the
+        motor controller executes those commands. This entire cycle repeats many times every
+        second, which is what allows the car to react smoothly as conditions change.
+      </p>
+      <figure class="article-figure">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/f1tenth-101/dynamic-overtake.webp"
+          alt="RViz view of the car on a mapped track with the racing line in green, the state machine reporting DYNAMIC OVERTAKE at 1.51 metres per second"
+          loading="lazy"
+        />
+        <figcaption>The stack turning sensor data into driving decisions, live</figcaption>
+      </figure>
+      <h2 id="resources">5. Learning resources</h2>
+      <h3>Official resources</h3>
+      <ul>
+        <li><a href="https://github.com/f1tenth" rel="noopener">F1TENTH on GitHub</a></li>
+        <li><a href="https://roboracer.ai/" rel="noopener">RoboRacer</a></li>
+      </ul>
+      <h3>Recommended topics</h3>
+      <ul>
+        <li>
+          <a href="https://stevengong.co/notes/Robot-Operating-System" rel="noopener">
+            ROS 2 fundamentals
+          </a>
+        </li>
+        <li>Autonomous navigation</li>
+        <li>
+          <a href="https://youtu.be/saVZtgPyyJQ" rel="noopener">Mapping and localization</a>
+        </li>
+        <li>
+          <a href="https://stevengong.co/notes/Path-Planning" rel="noopener">Motion planning</a>
+        </li>
+        <li>Vehicle control</li>
+      </ul>
+      <h3>Simulation</h3>
+      <p>
+        Most development begins in <a href="https://autodrive-ecosystem.github.io/" rel="noopener">
+        simulation</a> before being deployed to the physical vehicle. This enables rapid testing
+        while reducing the risk of damaging hardware.
+      </p>
+      <h2 id="sim-to-real">6. From simulation to the real car</h2>
+      <p>
+        One of F1TENTH's biggest strengths is its sim-to-real workflow. We typically develop and
+        validate algorithms in simulation before deploying the same ROS-based software onto the
+        physical vehicle. That short development cycle makes experimentation faster while ensuring
+        new ideas can be tested safely.
+      </p>
+      <figure class="article-figure wide">
+        <img
+          class="article-media"
+          src="/assets/pit-notes/f1tenth-101/simulation.webp"
+          alt="RViz simulation window showing the occupancy-grid track map, the planned racing line in green and live odometry arrows"
+          loading="lazy"
+        />
+        <figcaption>Simulation environment for algorithm testing</figcaption>
+      </figure>
+      <p>
+        Whether your interests lie in robotics, computer vision, machine learning or autonomous
+        systems, F1TENTH is an approachable way to get hands-on with the technologies the field is
+        actually built on. It's how we got here — and it's how we keep getting faster. 🏎💨
+      </p>
+    </div>
+    <div class="checkered" style="padding:24px 0">🏁</div>
+    <div class="article-actions">
+      <a class="btn accent" href="/contact/" style="text-decoration:none">Build one with us</a>
+      <a class="btn ghost" href="/pit-notes/" style="text-decoration:none">All pit notes</a>
+    </div>
+  </article>
+</Base>
