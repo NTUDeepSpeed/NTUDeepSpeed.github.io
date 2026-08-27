@@ -14,7 +14,14 @@ const date = showYear ? `${note.date} · ${note.year}` : note.date;
 
 <a href={note.href} style="text-decoration:none;color:inherit">
   <article class:list={["note-card", { featured: note.featured }]} style="height:100%">
-    {showThumb && <img class="thumb" src={note.thumb} alt="" loading="lazy" />}
+    {showThumb && (
+      <img
+        class:list={["thumb", { contain: note.thumbContain }]}
+        src={note.thumb}
+        alt=""
+        loading="lazy"
+      />
+    )}
     <div class="meta"><span class="tag">{note.tag}</span><span>{date}</span></div>
     <h3>{note.title}</h3>
     <p>{note.blurb}</p>

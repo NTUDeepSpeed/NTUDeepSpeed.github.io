@@ -58,7 +58,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "F1TENTH 101: a beginner's guide to autonomous racing",
   description,
-  image: new URL("/assets/pit-notes/f1tenth-101/thumb.jpg", Astro.site).toString(),
+  image: new URL("/assets/pit-notes/f1tenth-101/og.jpg", Astro.site).toString(),
   datePublished: "2026-08-27",
   author: { "@type": "Organization", name: "NTU DeepSpeed", url: Astro.site?.toString() },
   publisher: { "@type": "Organization", name: "NTU DeepSpeed", url: Astro.site?.toString() },
@@ -71,7 +71,7 @@ const articleSchema = {
   title="F1TENTH 101: a beginner's guide to autonomous racing"
   description={description}
   ogType="article"
-  ogImage="/assets/pit-notes/f1tenth-101/thumb.jpg"
+  ogImage="/assets/pit-notes/f1tenth-101/og.jpg"
 >
   <Fragment slot="head">
     <meta property="article:published_time" content="2026-08-27" />
@@ -97,8 +97,8 @@ const articleSchema = {
     </div>
     <figure class="article-figure">
       <img
-        class="article-media"
-        src="/assets/pit-notes/f1tenth-101/car.jpg"
+        class="article-media cutout grid-bg"
+        src="/assets/car.webp"
         alt="The NTU DeepSpeed F1TENTH car — a 1/10-scale race car with a blue rear wing, LiDAR puck and exposed electronics"
       />
       <figcaption>Our car · 1/10 scale · no driver, no camera</figcaption>

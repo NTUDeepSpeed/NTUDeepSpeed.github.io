@@ -160,6 +160,12 @@
 .article-figure.plate .article-media {
   background: var(--ink-0w); border-color: var(--line-strong); padding: 16px;
 }
+/* Cut-out subject — pair with .grid-bg so it sits on the panel grid, not a photo backdrop. */
+.article-media.cutout {
+  background-color: var(--bg-elev-1); padding: 24px; box-sizing: border-box;
+}
+/* Cut-out card thumb — show the whole subject instead of cropping it to fill. */
+.note-card .thumb.contain { object-fit: contain; background: var(--bg-elev-2); padding: 10px; }
 /* Detail-dense figures break out past the 720px text column so labels stay readable. */
 @media (min-width: 900px) {
   .article-figure.wide {

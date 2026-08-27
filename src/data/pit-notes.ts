@@ -8,6 +8,8 @@ export interface PitNote {
   href: string;
   /** Card thumbnail shown on the Pit notes index (16:9 crop). */
   thumb: string;
+  /** Set for cut-out thumbs, which must sit whole in the slot rather than fill it. */
+  thumbContain?: boolean;
   featured?: boolean;
 }
 
@@ -21,7 +23,8 @@ export const pitNotes: PitNote[] = [
     blurb:
       "What the 1/10-scale platform is, what's bolted to the car, and how a LiDAR scan turns into a steering angle — the short version, for anyone starting out.",
     href: "/pit-notes/f1tenth-101/",
-    thumb: "/assets/pit-notes/f1tenth-101/thumb.jpg",
+    thumb: "/assets/car.webp",
+    thumbContain: true,
   },
   {
     tag: "Race report",
