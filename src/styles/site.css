@@ -53,10 +53,11 @@
 .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
 .sec-plain { border-top: 1px solid var(--line); padding: 56px 0; }
 
-/* Photo variant of the car panel — the studio backdrop is light, so the overlays invert. */
-.car-vis .car-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.car-vis.photo { background: var(--ink-0w); }
-.car-vis.photo .tag { color: var(--ink-400); }
+/* Cut-out car photo — floats on the panel's grid like the schematic it replaced. */
+.car-vis .car-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; padding: 18px; box-sizing: border-box;
+}
 
 .sponsor-row { display: flex; gap: 16px; }
 .sponsor-box {
