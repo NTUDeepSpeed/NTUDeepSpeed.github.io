@@ -32,17 +32,17 @@ const articleSchema = {
       <Fragment set:html={icons.arrowLeft()} />
       All pit notes
     </a>
-    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)">
+    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)" data-reveal>
       Race report · Jul 23 · 2026
     </div>
-    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px">
+    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px" data-reveal>
       Racing the full stack at ICRA 2026
     </h1>
-    <p class="hero-sub" style="margin-bottom:24px">
+    <p class="hero-sub" style="margin-bottom:24px" data-reveal>
       Our complete autonomy pipeline's first race: five days at the 27th RoboRacer Autonomous
       Racing Competition in Vienna, on both the virtual and the physical track.
     </p>
-    <div class="article-byline">
+    <div class="article-byline" data-reveal>
       <span>By the ICRA crew</span>
       <span>·</span>
       <span>4 min read</span>
@@ -50,6 +50,7 @@ const articleSchema = {
     <figure class="article-figure">
       <img
         class="article-media"
+        data-reveal
         src="/assets/pit-notes/icra-2026/team-with-car.jpg"
         alt="The NTU DeepSpeed ICRA crew holding the car beside the track in Vienna"
       />
@@ -60,7 +61,7 @@ const articleSchema = {
         We are proud to share that our team wrapped up an incredible week at the 27th RoboRacer
         Autonomous Racing Competition at ICRA 2026 in Vienna! 🇦🇹
       </p>
-      <div class="tele" style="margin-bottom:32px">
+      <div class="tele" style="margin-bottom:32px" data-reveal>
         <div class="hero-eyebrow" style="margin-bottom:16px">ICRA 2026 · results</div>
         <div class="tele-row"><span class="k">Sim league · qualification</span><span class="v red">6th / 78</span></div>
         <div class="tele-row"><span class="k">Sim league · final stage race</span><span class="v">11th</span></div>
@@ -75,6 +76,7 @@ const articleSchema = {
       <figure class="article-figure">
         <img
           class="article-media"
+        data-reveal
           src="/assets/pit-notes/icra-2026/sim-league-team.jpg"
           alt="Team members at the TU Wien stand during the Sim Racing League"
         />
@@ -88,6 +90,7 @@ const articleSchema = {
       <figure class="article-figure">
         <video
           class="article-media"
+        data-reveal
           src="/assets/pit-notes/icra-2026/race-run.mp4"
           controls
           muted
@@ -99,6 +102,7 @@ const articleSchema = {
       <figure class="article-figure">
         <img
           class="article-media"
+        data-reveal
           src="/assets/pit-notes/icra-2026/time-trial.jpg"
           alt="The car mid-run on the physical track, lined with orange barriers"
         />
@@ -115,6 +119,7 @@ const articleSchema = {
       <figure class="article-figure">
         <img
           class="article-media"
+        data-reveal
           src="/assets/pit-notes/icra-2026/classic-cup.jpg"
           alt="The car cornering past the orange barriers during the Classic Cup"
         />
@@ -130,6 +135,7 @@ const articleSchema = {
       <figure class="article-figure">
         <img
           class="article-media"
+        data-reveal
           src="/assets/pit-notes/icra-2026/arena-group.jpg"
           alt="All competing teams gathered on the track for a group photo"
         />
@@ -150,3 +156,7 @@ const articleSchema = {
     <a class="btn ghost" href="/pit-notes/" style="text-decoration:none">All pit notes</a>
   </article>
 </Base>
+
+<script>
+  import "../../scripts/reading-progress";
+</script>

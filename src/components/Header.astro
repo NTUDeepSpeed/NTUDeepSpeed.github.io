@@ -34,13 +34,26 @@ const { active } = Astro.props;
 </header>
 
 <script>
+  import { animate } from "motion/mini";
+  import { stagger } from "motion";
+  import { EASE_MECH, hasMotion } from "../scripts/prefs";
+
   const hdr = document.querySelector<HTMLElement>(".hdr");
   const toggle = hdr?.querySelector<HTMLButtonElement>(".nav-toggle");
+  const links = Array.from(hdr?.querySelectorAll<HTMLAnchorElement>("#hdr-nav a") ?? []);
   if (hdr && toggle) {
     const setOpen = (open: boolean) => {
       hdr.classList.toggle("nav-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      // Mobile dropdown: the panel slides via CSS; the links cascade in behind it.
+      if (open && hasMotion && links.length) {
+        animate(
+          links,
+          { opacity: [0, 1], transform: ["translateX(-10px)", "none"] },
+          { duration: 0.28, delay: stagger(0.045), ease: EASE_MECH },
+        );
+      }
     };
     toggle.addEventListener("click", () => setOpen(!hdr.classList.contains("nav-open")));
     document.addEventListener("click", (e) => {

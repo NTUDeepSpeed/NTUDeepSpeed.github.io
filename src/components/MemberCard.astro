@@ -21,7 +21,7 @@ const linkProps = m.linkedin
   : {};
 ---
 
-<Tag class="member" {...linkProps}>
+<Tag class="member" data-reveal {...linkProps}>
   <div class="ph" style="padding:0">
     {m.photo
       ? <img src={m.photo} alt={m.name} loading="lazy" style={cropStyle} />

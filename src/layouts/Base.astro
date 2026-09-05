@@ -60,6 +60,14 @@ const organizationSchema = {
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0A0A0B" />
+    <script is:inline>
+      // Motion gate (see src/scripts/prefs.ts): stamp <html> before first paint so CSS can
+      // hold entrance-animated elements hidden until the motion scripts run — but only when
+      // JS is on and the visitor hasn't asked for reduced motion.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("has-motion");
+      }
+    </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -87,5 +95,8 @@ const organizationSchema = {
       </main>
       <Footer />
     </div>
+    <script>
+      import "../scripts/reveal";
+    </script>
   </body>
 </html>

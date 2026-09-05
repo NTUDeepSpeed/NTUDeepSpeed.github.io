@@ -47,6 +47,13 @@ src/
   layouts/Base.astro         shared page chrome: head, Header, <slot/>, Footer
   pages/                     one .astro file per page → one URL per file (index, achievements, members, contact)
   pages/pit-notes/           index.astro (listing) + one .astro file per article
+  scripts/                   client-side motion modules (see "Motion" below), imported from page <script> tags
+    prefs.ts                  `hasMotion` gate + the shared easing curve
+    reveal.ts                 in-view entrance reveals for [data-reveal] — loaded on every page by Base.astro
+    counters.ts               count-up for [data-count] numbers (Home + Achievements stats)
+    home.ts                   hero intro timeline, HUD clock, hero/car scroll parallax
+    timeline.ts               scroll-synced Achievements rail
+    reading-progress.ts       article reading-progress bar
 ```
 
 - `astro.config.mjs` sets `site` to the GitHub Pages org root (`https://ntudeepspeed.github.io`) —
@@ -79,6 +86,29 @@ record / live), `--flag-yellow` (caution / engineering), `--flag-green` (go / pa
 `--grid-cyan` (telemetry / data). Dark theme (`--ink-900` background) is the default; the brand
 "lives on black." Prefer reusing existing tokens/utility classes from `app.css`/`site.css` over
 introducing new colors or one-off styles.
+
+### Motion
+
+Two libraries with distinct jobs, both bundled by Astro from `src/scripts/`:
+
+- **Motion** (`motion` / `motion/mini`) — the global, hardware-accelerated primitives: `inView`
+  entrance reveals, `scroll()`-linked progress/parallax, the mobile-nav stagger. Always animate the
+  full `transform` string (not `x`/`y`) so it stays on the compositor.
+- **anime.js** (`animejs`) — page-level choreography: the hero `createTimeline`, `onScroll` count-ups
+  and the scroll-*synced* Achievements rail. Only imported by the pages that use it.
+
+Conventions:
+
+- **Reveal an element on scroll** — add `data-reveal` (optionally `="left" | "scale" | "fade"`).
+  Items entering together are staggered automatically; nothing else to wire. Don't put it on an
+  element whose layout relies on a CSS `transform` (e.g. `.article-figure.wide`) — mark a child.
+- **Count a number up** — add `data-count` to an element containing *only* the number (lap times
+  like `00:41.8`, `#9`, `9.4` all parse in place).
+- **Reduced motion / no JS** — `Base.astro` stamps `<html class="has-motion">` only when JS runs
+  and `prefers-reduced-motion` is not set. Every "hidden until animated" CSS state in `site.css`
+  is scoped under it, and every script checks `hasMotion` from `scripts/prefs.ts`. Keep it that
+  way: motion must never be a prerequisite for seeing content.
+- Motion timing should feel mechanical, not bouncy: use `EASE_MECH` / `outExpo`, never springs.
 
 ## Git workflow
 

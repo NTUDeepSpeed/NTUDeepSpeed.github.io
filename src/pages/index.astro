@@ -17,8 +17,22 @@ const notesPreview = pitNotes.slice(0, 3);
       <video class="drive-video" src="/assets/drive.mp4" autoplay muted loop playsinline preload="auto"></video>
       <div class="drive-vignette"></div>
       <div class="drive-grid"></div>
+      <div class="drive-hud" aria-hidden="true">
+        <div class="hud-l">
+          <span class="hud-cue">● Rec</span>
+          <span class="hud-sep"></span>
+          <span class="hud-v">NTU DeepSpeed</span>
+        </div>
+        <div class="hud-r">
+          <span class="hud-k">T+</span>
+          <span class="hud-v" data-hud-time>00:00.0</span>
+        </div>
+      </div>
       <div class="drive-overlay">
-        <h1 class="hero-display">NTU<br /><span>Deep</span><span class="red">Speed</span></h1>
+        <h1 class="hero-display">
+          <span class="hero-clip"><span class="hero-word">NTU</span></span><br />
+          <span class="hero-clip"><span class="hero-word">Deep</span></span><span class="hero-clip"><span class="hero-word red">Speed</span></span>
+        </h1>
         <p class="hero-sub" style="max-width:42ch;margin-top:20px">
           We build and program 1:10 scale autonomous race cars. No driver, no camera — just LiDAR,
           planning, and control.
@@ -34,18 +48,18 @@ const notesPreview = pitNotes.slice(0, 3);
   </section>
 
   <div class="stat-grid">
-    <div class="stat-panel hot"><div class="k">Best lap</div><div class="v">00:41.8</div><div class="foot">Yokohama · ICRA 24</div></div>
-    <div class="stat-panel"><div class="k">Top speed</div><div class="v">9.4<span class="u"> m/s</span></div><div class="foot">Sim · Sep 25</div></div>
-    <div class="stat-panel"><div class="k">Members</div><div class="v">14</div><div class="foot">EEE · CCE · MAE</div></div>
-    <div class="stat-panel"><div class="k">Races</div><div class="v">{achievementStats.races.value}</div><div class="foot">{achievementStats.races.foot}</div></div>
+    <div class="stat-panel hot" data-reveal><div class="k">Best lap</div><div class="v" data-count>00:41.8</div><div class="foot">Yokohama · ICRA 24</div></div>
+    <div class="stat-panel" data-reveal><div class="k">Top speed</div><div class="v"><span data-count>9.4</span><span class="u"> m/s</span></div><div class="foot">Sim · Sep 25</div></div>
+    <div class="stat-panel" data-reveal><div class="k">Members</div><div class="v" data-count>14</div><div class="foot">EEE · CCE · MAE</div></div>
+    <div class="stat-panel" data-reveal><div class="k">Races</div><div class="v" data-count>{achievementStats.races.value}</div><div class="foot">{achievementStats.races.foot}</div></div>
   </div>
 
   <section class="sec">
-    <div>
+    <div data-reveal>
       <div class="sec-num">§ 01</div>
       <h2 class="sec-h">Who we are</h2>
     </div>
-    <div>
+    <div data-reveal>
       <p class="sec-lede">
         DeepSpeed is Nanyang Technological University's autonomous racing team. We design, build,
         and program 1:10 scale race cars that drive themselves — perception, planning, and control,
@@ -59,11 +73,11 @@ const notesPreview = pitNotes.slice(0, 3);
 
   <section class="sec-plain">
     <div class="split-2" style="margin-bottom:40px">
-      <div>
+      <div data-reveal>
         <div class="sec-num">§ 02</div>
         <h2 class="sec-h">What is RoboRacer</h2>
       </div>
-      <div>
+      <div data-reveal>
         <p class="sec-lede">
           RoboRacer — formerly F1Tenth — is the international autonomous racing league. 1:10 scale
           cars, real tracks, no drivers.
@@ -74,26 +88,26 @@ const notesPreview = pitNotes.slice(0, 3);
       </div>
     </div>
     <div class="car-layout">
-      <div class="car-vis">
+      <div class="car-vis" data-reveal="scale">
         <img class="car-photo" src="/assets/car.webp" alt="The NTU DeepSpeed 1:10 scale autonomous race car" />
         <div class="tag">Our car · scale 1 : 10</div>
       </div>
       <div class="spec-list">
-        <div class="row"><span class="k">Scale</span><span class="v">1 : 10 · ~4 kg</span></div>
-        <div class="row"><span class="k">Sensing</span><span class="v">LiDAR + IMU</span></div>
-        <div class="row"><span class="k">Compute</span><span class="v">Onboard · Jetson Orin NX</span></div>
-        <div class="row"><span class="k">Format</span><span class="v">Head-to-head · 10 laps</span></div>
-        <div class="row"><span class="k">Win condition</span><span class="v">Fastest clean lap</span></div>
+        <div class="row" data-reveal><span class="k">Scale</span><span class="v">1 : 10 · ~4 kg</span></div>
+        <div class="row" data-reveal><span class="k">Sensing</span><span class="v">LiDAR + IMU</span></div>
+        <div class="row" data-reveal><span class="k">Compute</span><span class="v">Onboard · Jetson Orin NX</span></div>
+        <div class="row" data-reveal><span class="k">Format</span><span class="v">Head-to-head · 10 laps</span></div>
+        <div class="row" data-reveal><span class="k">Win condition</span><span class="v">Fastest clean lap</span></div>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <div>
+    <div data-reveal>
       <div class="sec-num">§ 03</div>
       <h2 class="sec-h">From the pit notes</h2>
     </div>
-    <div>
+    <div data-reveal>
       <p class="sec-lede">
         Race reports, engineering write-ups, and what we learned soldering at 2am. Written by the
         team, for anyone building fast robots.
@@ -106,11 +120,11 @@ const notesPreview = pitNotes.slice(0, 3);
   </div>
 
   <section class="sec" id="join">
-    <div>
+    <div data-reveal>
       <div class="sec-num">§ 04</div>
       <h2 class="sec-h">Join the team</h2>
     </div>
-    <div>
+    <div data-reveal>
       <p class="sec-lede">
         Applications open on a yearly basis. We expect ROS 2 and comfort with C++ or Python. Follow
         our social media for when positions open.
@@ -126,11 +140,11 @@ const notesPreview = pitNotes.slice(0, 3);
 
   <section class="sec-plain" style="padding-bottom:24px">
     <div class="split-2" style="margin-bottom:40px">
-      <div>
+      <div data-reveal>
         <div class="sec-num">§ 05</div>
         <h2 class="sec-h">Sponsors</h2>
       </div>
-      <div>
+      <div data-reveal>
         <p class="sec-lede">
           We race with your logo on the shell. Sponsorship goes straight to the grid — compute,
           travel, and tires.
@@ -138,7 +152,7 @@ const notesPreview = pitNotes.slice(0, 3);
         <a class="btn ghost" href="/contact/" style="text-decoration:none;margin-top:24px">Partner with us</a>
       </div>
     </div>
-    <div class="sponsor-panel">
+    <div class="sponsor-panel" data-reveal>
       <img
         src="/assets/ntu-ccds-logo-white.png"
         alt="Nanyang Technological University College of Computing and Data Science"
@@ -150,14 +164,6 @@ const notesPreview = pitNotes.slice(0, 3);
 </Base>
 
 <script>
-  // If the hero footage isn't present (or fails to load), fall back to the
-  // dark stage — grid + vignette still frame the overlay.
-  const hero = document.querySelector<HTMLElement>(".drive-hero");
-  const video = hero?.querySelector<HTMLVideoElement>("video");
-  if (hero && video) {
-    video.addEventListener("error", () => hero.classList.add("no-video"), true);
-    video.play().catch(() => {
-      /* autoplay rejection is fine — the poster frame still shows */
-    });
-  }
+  import "../scripts/home";
+  import "../scripts/counters";
 </script>

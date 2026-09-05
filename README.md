@@ -39,6 +39,8 @@ src/
     app.css          design-system component styles (header, cards, timeline, …)
     site.css         site-specific additions + responsive layer
   components/        shared Astro components (Header, Footer, NoteCard, MemberCard)
+  scripts/           client-side motion (Motion + anime.js): scroll reveals, count-ups,
+                     hero timeline, reading progress — all skipped under prefers-reduced-motion
   layouts/Base.astro shared page chrome (head, header, footer)
   pages/             one .astro file per page → one URL per file
     index.astro              /

@@ -40,14 +40,14 @@ const rows = [
   title="Contact us"
   description="Sponsors, collaborators, press — reach out to NTU DeepSpeed. We reply within a few days."
 >
-  <div class="hero-eyebrow" style="margin-bottom:8px">Get in touch</div>
-  <h1 class="hero-h" style="margin-bottom:8px">Contact us</h1>
-  <p class="hero-sub" style="margin-bottom:40px">
+  <div class="hero-eyebrow" style="margin-bottom:8px" data-reveal>Get in touch</div>
+  <h1 class="hero-h" style="margin-bottom:8px" data-reveal>Contact us</h1>
+  <p class="hero-sub" style="margin-bottom:40px" data-reveal>
     Sponsors, collaborators, press — reach out. We reply within a few days.
   </p>
   <div class="contact-list">
     {rows.map((row) => (
-      <div class="row">
+      <div class="row" data-reveal>
         <span class="k">
           <Fragment set:html={row.icon} />
           {row.label}
@@ -63,7 +63,7 @@ const rows = [
         </a>
       </div>
     ))}
-    <div class="row multiline">
+    <div class="row multiline" data-reveal>
       <span class="k">
         <Fragment set:html={icons.location()} />
         Address

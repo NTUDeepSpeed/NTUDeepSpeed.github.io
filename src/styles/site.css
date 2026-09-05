@@ -94,7 +94,8 @@
   position: absolute; left: 50%; top: 16px; bottom: 0; width: 1px; background: var(--line);
 }
 .timeline-entry .tl-rail .dot {
-  position: absolute; left: 50%; top: 4px; transform: translateX(-50%);
+  /* Centered with `left` rather than a translate so the scroll-in scale (timeline.ts) owns transform. */
+  position: absolute; left: calc(50% - 4.5px); top: 4px;
   width: 9px; height: 9px; border-radius: 50%;
   border: 2px solid var(--line-strong); background: var(--bg);
 }
@@ -263,6 +264,53 @@
    If assets/drive.mp4 is missing, hide the <video> — the black stage,
    grid, and vignette still frame the hero. */
 .drive-hero.no-video .drive-video { display: none; }
+
+/* ===== Motion =====
+   Entrance and scroll-linked animation lives in src/scripts/ (Motion for the viewport +
+   scroll primitives, anime.js for page choreography). <html class="has-motion"> is stamped
+   by an inline script in Base.astro only when JS runs and the visitor hasn't asked for
+   reduced motion, so these "hidden until animated" states never hide content otherwise. */
+.has-motion [data-reveal]:not([data-revealed]) { opacity: 0; }
+
+/* Home hero — each word of the wordmark rises out of its own clip. The padding keeps
+   Permanent Marker's ascenders/descenders and the text-shadow inside the clip; the
+   matching negative margin keeps the line box exactly where it was. */
+.hero-clip {
+  display: inline-block; vertical-align: top; overflow: hidden;
+  padding: 0.16em 0.14em 0.28em; margin: -0.16em -0.14em -0.28em;
+}
+.hero-word { display: inline-block; }
+.has-motion .drive-overlay .hero-word { transform: translateY(140%); }
+.has-motion .drive-overlay .hero-sub,
+.has-motion .drive-overlay .drive-actions,
+.has-motion .drive-hud { opacity: 0; }
+
+/* Article reading progress — a 2px race-red line along the top edge (reading-progress.ts). */
+.reading-progress {
+  position: fixed; top: 0; left: 0; width: 100%; height: 2px; z-index: 60;
+  background: var(--accent); transform-origin: 0 50%; transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* Achievements rail — the line draws itself as you scroll; the dot pops when it arrives. */
+.timeline-entry .tl-rail .line { transform-origin: 50% 0; }
+.has-motion .timeline-entry .tl-rail .line { transform: scaleY(0); }
+.has-motion .timeline-entry .tl-rail .dot { transform: scale(0); }
+
+/* Hover zoom on roster photos — pointer devices only, so touch never sticks a card mid-zoom.
+   (Pit-note thumbs get the same treatment in app.css.) */
+.member .ph img { transition: transform 600ms var(--ease-glide); }
+@media (hover: hover) {
+  .member:hover .ph img {
+    transform: translate(calc(var(--slot-x, 0) * 1%), calc(var(--slot-y, 0) * 1%))
+               scale(calc(var(--slot-s, 1) * 1.05));
+  }
+}
+
+/* The CSS-keyframe blinkers (REC cue, Live chip) also stand still for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .drive-hud .hud-cue, .live-chip .d { animation: none; }
+}
 
 /* ===== Responsive (the mockups are desktop-first; degrade gracefully) ===== */
 

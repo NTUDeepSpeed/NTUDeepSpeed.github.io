@@ -82,15 +82,15 @@ const articleSchema = {
       <Fragment set:html={icons.arrowLeft()} />
       All pit notes
     </a>
-    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)">
+    <div class="hero-eyebrow" style="margin-bottom:12px;color:var(--accent)" data-reveal>
       Explainer · Aug 27 · 2026
     </div>
-    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px">F1TENTH 101</h1>
-    <p class="hero-sub" style="margin-bottom:24px">
+    <h1 style="font-size:clamp(40px,6vw,64px);margin-bottom:16px" data-reveal>F1TENTH 101</h1>
+    <p class="hero-sub" style="margin-bottom:24px" data-reveal>
       A beginner's guide to autonomous racing: what the 1/10-scale platform is, what's bolted to
       the car, and how a LiDAR scan turns into a steering angle.
     </p>
-    <div class="article-byline">
+    <div class="article-byline" data-reveal>
       <span>By the DeepSpeed team</span>
       <span>·</span>
       <span>6 min read</span>
@@ -98,6 +98,7 @@ const articleSchema = {
     <figure class="article-figure">
       <img
         class="article-media cutout grid-bg"
+        data-reveal
         src="/assets/car.webp"
         alt="The NTU DeepSpeed F1TENTH car — a 1/10-scale race car with a blue rear wing, LiDAR puck and exposed electronics"
       />
@@ -110,7 +111,7 @@ const articleSchema = {
         racecars. It's the platform we race, and it's where every new member on the team starts.
         This is the short version of what it is and how it works.
       </p>
-      <nav class="article-toc" aria-label="Contents">
+      <nav class="article-toc" aria-label="Contents" data-reveal>
         <div class="hero-eyebrow" style="margin-bottom:10px">Contents</div>
         <ol>
           {sections.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}
@@ -136,7 +137,7 @@ const articleSchema = {
         algorithms. Today it's used worldwide for coursework, research projects and international
         racing competitions — one of the most accessible ways to learn modern robotics.
       </p>
-      <div class="tele" style="margin-bottom:32px">
+      <div class="tele" style="margin-bottom:32px" data-reveal>
         <div class="hero-eyebrow" style="margin-bottom:16px">The platform · at a glance</div>
         <div class="tele-row"><span class="k">Scale</span><span class="v red">1 / 10</span></div>
         <div class="tele-row"><span class="k">Sensing</span><span class="v">2D LiDAR</span></div>
@@ -152,7 +153,7 @@ const articleSchema = {
       <div class="hw-list">
         {
           hardware.map((h, i) => (
-            <article class="hw-item">
+            <article class="hw-item" data-reveal>
               <div class="hw-shot">
                 <img
                   src={`/assets/pit-notes/f1tenth-101/hardware/${h.slug}.webp`}
@@ -187,6 +188,7 @@ const articleSchema = {
       <figure class="article-figure wide plate">
         <img
           class="article-media"
+          data-reveal
           src="/assets/pit-notes/f1tenth-101/software-stack.webp"
           alt="Diagram of the F1TENTH software stack: sensors, perception, localization, planning, control and actuators, with a feedback loop back to the sensors"
           loading="lazy"
@@ -212,6 +214,7 @@ const articleSchema = {
       <figure class="article-figure">
         <img
           class="article-media"
+          data-reveal
           src="/assets/pit-notes/f1tenth-101/dynamic-overtake.webp"
           alt="RViz view of the car on a mapped track with the racing line in green, the state machine reporting DYNAMIC OVERTAKE at 1.51 metres per second"
           loading="lazy"
@@ -256,6 +259,7 @@ const articleSchema = {
       <figure class="article-figure wide">
         <img
           class="article-media"
+          data-reveal
           src="/assets/pit-notes/f1tenth-101/simulation.webp"
           alt="RViz simulation window showing the occupancy-grid track map, the planned racing line in green and live odometry arrows"
           loading="lazy"
@@ -275,3 +279,7 @@ const articleSchema = {
     </div>
   </article>
 </Base>
+
+<script>
+  import "../../scripts/reading-progress";
+</script>

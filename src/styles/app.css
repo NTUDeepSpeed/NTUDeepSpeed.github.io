@@ -445,10 +445,16 @@ body {
   transition: border-color var(--dur-fast) var(--ease-mech), transform var(--dur-fast) var(--ease-mech);
 }
 .note-card:hover { border-color: var(--fg); transform: translateY(-2px); }
-.note-card .thumb {
-  display: block; width: calc(100% + 40px); margin: -20px -20px 16px;
-  aspect-ratio: 16 / 9; object-fit: cover;
+.note-card .thumb-wrap {
+  margin: -20px -20px 16px; aspect-ratio: 16 / 9; overflow: hidden;
   border-radius: 8px 8px 0 0; border-bottom: 1px solid var(--line);
+}
+.note-card .thumb {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 600ms var(--ease-glide);
+}
+@media (hover: hover) {
+  .note-card:hover .thumb { transform: scale(1.04); }
 }
 .note-card.featured { border-top: 2px solid var(--accent); }
 .note-card.featured .tag { color: var(--accent); }
