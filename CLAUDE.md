@@ -51,9 +51,11 @@ src/
     prefs.ts                  `hasMotion` gate + the shared easing curve
     reveal.ts                 in-view entrance reveals for [data-reveal] — loaded on every page by Base.astro
     counters.ts               count-up for [data-count] numbers (Home + Achievements stats)
-    home.ts                   hero intro timeline, HUD clock, hero/car scroll parallax
+    home.ts                   hero intro (hand-written wordmark), HUD clock, hero/car scroll parallax
     timeline.ts               scroll-synced Achievements rail
     reading-progress.ts       article reading-progress bar
+  data/hero-glyphs.ts        GENERATED — Permanent Marker outlines + pen paths for the written hero title
+tools/hero-glyphs/           generator for the above (`yarn hero-glyphs`); pens.json holds the hand-authored strokes
 ```
 
 - `astro.config.mjs` sets `site` to the GitHub Pages org root (`https://ntudeepspeed.github.io`) —
@@ -109,6 +111,12 @@ Conventions:
   is scoped under it, and every script checks `hasMotion` from `scripts/prefs.ts`. Keep it that
   way: motion must never be a prerequisite for seeing content.
 - Motion timing should feel mechanical, not bouncy: use `EASE_MECH` / `outExpo`, never springs.
+- **Hand-written hero title** — the Home h1 is an inline SVG (`src/data/hero-glyphs.ts`, generated
+  by `yarn hero-glyphs` from the Permanent Marker font) whose glyph fills are masked by "pen"
+  strokes that anime.js draws in writing order. To change the title text, edit `LINES` in
+  `tools/hero-glyphs/build.mjs`; any new letter needs a pen path in `tools/hero-glyphs/pens.json`
+  (glyph-local font units, baseline y=0, y down) that covers its outline. Keep the `sr-only`
+  text in sync — it's what search engines and screen readers get.
 
 ## Git workflow
 

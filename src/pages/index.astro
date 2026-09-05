@@ -4,8 +4,12 @@ import NoteCard from "../components/NoteCard.astro";
 import { icons } from "../components/icons";
 import { pitNotes } from "../data/pit-notes";
 import { achievementStats } from "../data/achievements";
+import { heroGlyphs } from "../data/hero-glyphs";
 
 const notesPreview = pitNotes.slice(0, 3);
+// The wordmark is drawn stroke by stroke (home.ts): glyph outlines masked by "pen" paths.
+const vb = heroGlyphs.viewBox.split(" ").map(Number);
+const penMargin = 200; // let round caps run past the viewBox without being clipped by the mask region
 ---
 
 <Base
@@ -30,8 +34,43 @@ const notesPreview = pitNotes.slice(0, 3);
       </div>
       <div class="drive-overlay">
         <h1 class="hero-display">
-          <span class="hero-clip"><span class="hero-word">NTU</span></span><br />
-          <span class="hero-clip"><span class="hero-word">Deep</span></span><span class="hero-clip"><span class="hero-word red">Speed</span></span>
+          <span class="sr-only">NTU DeepSpeed</span>
+          <svg
+            class="hero-glyphs"
+            viewBox={heroGlyphs.viewBox}
+            style={`width:${heroGlyphs.widthEm}em;height:${heroGlyphs.heightEm}em`}
+            aria-hidden="true"
+            focusable="false"
+          >
+            <defs>
+              {Object.entries(heroGlyphs.outlines).map(([char, d]) => <path id={`hg-${char}`} d={d} />)}
+              <mask
+                id="hero-pen"
+                maskUnits="userSpaceOnUse"
+                x={vb[0] - penMargin}
+                y={vb[1] - penMargin}
+                width={vb[2] + 2 * penMargin}
+                height={vb[3] + 2 * penMargin}
+              >
+                {heroGlyphs.glyphs.map((g, gi) =>
+                  (heroGlyphs.pens[g.char] ?? []).map((pen) => (
+                    <path
+                      class="pen"
+                      data-glyph={gi}
+                      d={pen.d}
+                      stroke-width={pen.w}
+                      transform={`translate(${g.x} ${g.y})`}
+                    />
+                  )),
+                )}
+              </mask>
+            </defs>
+            <g class="glyphs" mask="url(#hero-pen)">
+              {heroGlyphs.glyphs.map((g) => (
+                <use href={`#hg-${g.char}`} class:list={["glyph", { red: g.red }]} transform={`translate(${g.x} ${g.y})`} />
+              ))}
+            </g>
+          </svg>
         </h1>
         <p class="hero-sub" style="max-width:42ch;margin-top:20px">
           We build and program 1:10 scale autonomous race cars. No driver, no camera — just LiDAR,

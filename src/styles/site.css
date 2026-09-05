@@ -272,15 +272,28 @@
    reduced motion, so these "hidden until animated" states never hide content otherwise. */
 .has-motion [data-reveal]:not([data-revealed]) { opacity: 0; }
 
-/* Home hero — each word of the wordmark rises out of its own clip. The padding keeps
-   Permanent Marker's ascenders/descenders and the text-shadow inside the clip; the
-   matching negative margin keeps the line box exactly where it was. */
-.hero-clip {
-  display: inline-block; vertical-align: top; overflow: hidden;
-  padding: 0.16em 0.14em 0.28em; margin: -0.16em -0.14em -0.28em;
+/* Home hero — the wordmark is an inline SVG of the Permanent Marker outlines
+   (src/data/hero-glyphs.ts) whose fill is masked by "pen" strokes; home.ts draws the pens
+   in writing order so the title writes itself. Pens are full strokes by default, so no-JS
+   and reduced-motion visitors see the finished title; under has-motion they hide until the
+   script arms them, with a CSS fallback that shows everything after 3s regardless. */
+.hero-glyphs {
+  display: block; overflow: visible;
+  filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0));
+  transition: filter 600ms var(--ease-glide);
 }
-.hero-word { display: inline-block; }
-.has-motion .drive-overlay .hero-word { transform: translateY(140%); }
+.hero-glyphs .glyph { fill: currentColor; }
+.hero-glyphs .glyph.red { fill: var(--accent); }
+.hero-glyphs .pen { fill: none; stroke: #fff; stroke-linecap: round; stroke-linejoin: round; }
+.hero-glyphs.written,
+html:not(.has-motion) .hero-glyphs { filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.6)); }
+html:not(.has-motion) .hero-glyphs .glyphs { mask: none; }
+.has-motion .hero-glyphs .pen { visibility: hidden; animation: hero-pen-fallback 0s 3s forwards; }
+@keyframes hero-pen-fallback { to { visibility: visible; } }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .has-motion .drive-overlay .hero-sub,
 .has-motion .drive-overlay .drive-actions,
 .has-motion .drive-hud { opacity: 0; }

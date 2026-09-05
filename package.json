@@ -8,12 +8,14 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "hero-glyphs": "node tools/hero-glyphs/build.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "7.2.8",
+    "opentype.js": "1.3.4",
     "typescript": "6"
   },
   "dependencies": {

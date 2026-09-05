@@ -1,0 +1,34 @@
+{
+  "_": "Pen paths for the hand-written hero title. One entry per letter, in writing order, in glyph-local font units (baseline y=0, y grows downward, Permanent Marker upm=1024). Each is the centre line of a marker stroke; `w` overrides the default stroke width used to mask the glyph fill. Validated against the glyph outlines for >=99.6% coverage.",
+  "width": 230,
+  "paths": {
+    "N": [
+      "M 262 -735 L 190 -450 L 110 -230 L 75 -20",
+      "M 255 -720 L 300 -450 L 360 -220 L 432 -40 L 500 -220 L 545 -320 L 590 -470 L 622 -620 L 610 -740"
+    ],
+    "T": [
+      "M 25 -612 L 775 -668",
+      "M 360 -570 L 300 -400 L 222 -200 L 213 -90 L 262 8"
+    ],
+    "U": [
+      { "d": "M 135 -660 L 138 -330 Q 145 -130 290 -115 Q 430 -105 490 -260 L 560 -360 L 605 -460 L 640 -600 L 638 -735", "w": 250 }
+    ],
+    "D": [
+      "M 92 -735 L 130 -400 L 95 5",
+      "M 105 -700 L 250 -670 L 400 -600 L 490 -480 L 520 -400 L 500 -300 L 440 -240 L 330 -160 L 200 -95 L 110 -20"
+    ],
+    "E": [
+      "M 140 -610 L 185 -470 L 140 -330 L 100 -200 L 105 -80",
+      "M 130 -600 L 400 -628 L 640 -672",
+      "M 180 -378 L 530 -398",
+      "M 110 -85 L 350 -105 L 595 -135"
+    ],
+    "P": [
+      { "d": "M 262 -735 L 232 -540 L 170 -420 L 150 -300 L 140 -200 L 122 -90 L 110 8", "w": 250 },
+      { "d": "M 250 -680 L 420 -665 L 560 -650 L 630 -580 L 620 -500 L 540 -420 L 420 -360 L 300 -300 L 200 -262", "w": 250 }
+    ],
+    "S": [
+      { "d": "M 685 -612 Q 600 -695 420 -652 Q 220 -625 70 -560 Q 20 -500 100 -495 Q 260 -480 432 -395 Q 480 -300 430 -230 Q 380 -150 258 -105 Q 134 -85 95 0", "w": 240 }
+    ]
+  }
+}
