@@ -53,10 +53,10 @@ if (hasMotion && hero && overlay) {
   const actions = overlay.querySelector<HTMLElement>(".drive-actions");
   const hud = hero.querySelector<HTMLElement>(".drive-hud");
 
-  const PEN_SPEED = 28; // font units per ms — 30 strokes, ~2.1s for the whole wordmark
-  const LIFT_SAME_GLYPH = 10; // ms between strokes of one letter
-  const LIFT_NEXT_GLYPH = 25; // ms between letters
-  const START = 100;
+  const PEN_SPEED = 60; // font units per ms — 30 strokes, ~1.4s for the whole wordmark
+  const LIFT_SAME_GLYPH = 5; // ms between strokes of one letter
+  const LIFT_NEXT_GLYPH = 14; // ms between letters
+  const START = 60;
 
   // Positions are absolute ms on the timeline. The lede and the CTA come in while the
   // title is still being written so the button is usable well under a second in.
@@ -74,7 +74,7 @@ if (hasMotion && hero && overlay) {
     let t = START;
     drawables.forEach((drawable, i) => {
       const pen = pens[i];
-      const duration = Math.max(70, pen.getTotalLength() / PEN_SPEED);
+      const duration = Math.max(40, pen.getTotalLength() / PEN_SPEED);
       tl.add(drawable, { draw: ["0 0", "0 1"], duration, ease: "inOutSine" }, t);
       const next = pens[i + 1];
       t += duration + (next && next.dataset.glyph === pen.dataset.glyph ? LIFT_SAME_GLYPH : LIFT_NEXT_GLYPH);
